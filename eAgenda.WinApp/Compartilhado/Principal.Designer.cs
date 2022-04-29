@@ -59,6 +59,7 @@
             this.buttonContato.TabIndex = 1;
             this.buttonContato.Text = "Contato";
             this.buttonContato.UseVisualStyleBackColor = false;
+            this.buttonContato.Click += new System.EventHandler(this.buttonContato_Click);
             // 
             // buttonTarefa
             // 
@@ -72,6 +73,7 @@
             this.buttonTarefa.TabIndex = 2;
             this.buttonTarefa.Text = "Tarefa";
             this.buttonTarefa.UseVisualStyleBackColor = false;
+            this.buttonTarefa.Click += new System.EventHandler(this.buttonTarefa_Click);
             // 
             // Principal
             // 

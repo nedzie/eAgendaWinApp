@@ -59,6 +59,7 @@
             this.buttonEditar.TabIndex = 1;
             this.buttonEditar.Text = "Editar";
             this.buttonEditar.UseVisualStyleBackColor = false;
+            this.buttonEditar.Click += new System.EventHandler(this.buttonEditar_Click);
             // 
             // buttonExcluir
             // 
@@ -71,6 +72,7 @@
             this.buttonExcluir.TabIndex = 2;
             this.buttonExcluir.Text = "Excluir";
             this.buttonExcluir.UseVisualStyleBackColor = false;
+            this.buttonExcluir.Click += new System.EventHandler(this.buttonExcluir_Click);
             // 
             // listBoxContato
             // 

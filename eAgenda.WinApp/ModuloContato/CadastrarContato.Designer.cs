@@ -1,6 +1,6 @@
 ﻿namespace eAgenda.WinApp.ModuloContato
 {
-    partial class InserirContato
+    partial class CadastrarContato
     {
         /// <summary>
         /// Required designer variable.
@@ -32,11 +32,11 @@
             this.textBoxNome = new System.Windows.Forms.TextBox();
             this.labelEmail = new System.Windows.Forms.Label();
             this.textBoxEmail = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxCargo = new System.Windows.Forms.TextBox();
             this.labelCargo = new System.Windows.Forms.Label();
             this.textBoxEmpresa = new System.Windows.Forms.TextBox();
             this.labelEmpresa = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxTelefone = new System.Windows.Forms.TextBox();
             this.labelTelefone = new System.Windows.Forms.Label();
             this.buttonInserir = new System.Windows.Forms.Button();
             this.buttonCancelar = new System.Windows.Forms.Button();
@@ -76,12 +76,12 @@
             this.textBoxEmail.Size = new System.Drawing.Size(247, 23);
             this.textBoxEmail.TabIndex = 3;
             // 
-            // textBox1
+            // textBoxCargo
             // 
-            this.textBox1.Location = new System.Drawing.Point(52, 228);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(247, 23);
-            this.textBox1.TabIndex = 7;
+            this.textBoxCargo.Location = new System.Drawing.Point(52, 228);
+            this.textBoxCargo.Name = "textBoxCargo";
+            this.textBoxCargo.Size = new System.Drawing.Size(247, 23);
+            this.textBoxCargo.TabIndex = 7;
             // 
             // labelCargo
             // 
@@ -110,12 +110,12 @@
             this.labelEmpresa.TabIndex = 4;
             this.labelEmpresa.Text = "Empresa:";
             // 
-            // textBox2
+            // textBoxTelefone
             // 
-            this.textBox2.Location = new System.Drawing.Point(53, 139);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(247, 23);
-            this.textBox2.TabIndex = 9;
+            this.textBoxTelefone.Location = new System.Drawing.Point(53, 139);
+            this.textBoxTelefone.Name = "textBoxTelefone";
+            this.textBoxTelefone.Size = new System.Drawing.Size(247, 23);
+            this.textBoxTelefone.TabIndex = 9;
             // 
             // labelTelefone
             // 
@@ -130,6 +130,7 @@
             // buttonInserir
             // 
             this.buttonInserir.BackColor = System.Drawing.Color.White;
+            this.buttonInserir.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonInserir.FlatAppearance.BorderSize = 0;
             this.buttonInserir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonInserir.Location = new System.Drawing.Point(53, 268);
@@ -138,6 +139,7 @@
             this.buttonInserir.TabIndex = 10;
             this.buttonInserir.Text = "Inserir";
             this.buttonInserir.UseVisualStyleBackColor = false;
+            this.buttonInserir.Click += new System.EventHandler(this.buttonInserir_Click);
             // 
             // buttonCancelar
             // 
@@ -152,7 +154,7 @@
             this.buttonCancelar.UseVisualStyleBackColor = false;
             this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
-            // InserirContato
+            // CadastrarContato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -160,9 +162,9 @@
             this.ClientSize = new System.Drawing.Size(368, 353);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonInserir);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBoxTelefone);
             this.Controls.Add(this.labelTelefone);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxCargo);
             this.Controls.Add(this.labelCargo);
             this.Controls.Add(this.textBoxEmpresa);
             this.Controls.Add(this.labelEmpresa);
@@ -173,10 +175,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "InserirContato";
+            this.Name = "CadastrarContato";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Inserir novo Contato";
+            this.Text = "Cadastrar contato";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,11 +190,11 @@
         private System.Windows.Forms.TextBox textBoxNome;
         private System.Windows.Forms.Label labelEmail;
         private System.Windows.Forms.TextBox textBoxEmail;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxCargo;
         private System.Windows.Forms.Label labelCargo;
         private System.Windows.Forms.TextBox textBoxEmpresa;
         private System.Windows.Forms.Label labelEmpresa;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxTelefone;
         private System.Windows.Forms.Label labelTelefone;
         private System.Windows.Forms.Button buttonInserir;
         private System.Windows.Forms.Button buttonCancelar;
