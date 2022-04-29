@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eAgenda.Dominio", "eAgenda.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eAgenda.Infra", "eAgenda.Infra\eAgenda.Infra.csproj", "{BEE5C22A-7F58-4531-B225-EBBE7C47FC1E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Apresentação", "1 - Apresentação", "{D7FBE3AE-E891-4493-8ED4-97A1C465B75E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Dominio", "2 - Dominio", "{571C20C0-A29D-4A5B-8FA2-F19A4FF0E765}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infra", "3 - Infra", "{75B3824A-5011-4277-9DC5-EFDA803F2CA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +36,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4C422975-67CF-4150-A0FB-8392585653D7} = {D7FBE3AE-E891-4493-8ED4-97A1C465B75E}
+		{7DDEB0CD-5B79-46A0-AEFE-161486293329} = {571C20C0-A29D-4A5B-8FA2-F19A4FF0E765}
+		{BEE5C22A-7F58-4531-B225-EBBE7C47FC1E} = {75B3824A-5011-4277-9DC5-EFDA803F2CA8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FA69D739-0436-4AF8-8EBD-826952B91185}

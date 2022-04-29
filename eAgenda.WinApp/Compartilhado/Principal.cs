@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eAgenda.WinApp.ModuloContato;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,5 +18,10 @@ namespace eAgenda.WinApp
             InitializeComponent();
         }
 
+        private void buttonCompromisso_Click(object sender, EventArgs e)
+        {
+            TelaContato telaContato = new();
+            telaContato.Show();
+        }
     }
 }

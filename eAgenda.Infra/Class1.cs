@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace eAgenda.Infra
+namespace eAgenda.Infra.Compartilhado
 {
     public class Class1
     {
