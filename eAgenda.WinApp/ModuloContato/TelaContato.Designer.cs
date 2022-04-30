@@ -111,7 +111,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaContato";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tela de Contatos";
             this.ResumeLayout(false);

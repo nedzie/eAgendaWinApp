@@ -25,16 +25,14 @@ namespace eAgenda.Dominio
             return "REGISTRO_VALIDO";
         }
 
-        public virtual string Editar(T novoRegistro)
+        public virtual string Editar(T novoRegistro, T antigoRegistro)
         {
             string resultado = novoRegistro.Validar();
             if (resultado != "REGISTRO_VALIDO")
                 return resultado;
 
-            //int indice = registros.FindIndex(x => x.id == novoRegistro.id);
-            //novoRegistro.id = registros[indice].id;
-            //registros[indice] = novoRegistro;
-
+            int indice = registros.FindIndex(x => x.id == antigoRegistro.id);
+            registros[indice] = novoRegistro;
             return "REGISTRO_VALIDO";
         }
         public virtual bool Excluir(T registro)

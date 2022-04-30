@@ -176,7 +176,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaCadastrarContato";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastrar contato";
             this.ResumeLayout(false);

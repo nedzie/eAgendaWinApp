@@ -40,7 +40,7 @@ namespace eAgenda.WinApp.ModuloContato
 
             Contato novoContato = new();
 
-            //novoContato = contatoSelecionado;
+            novoContato.id = contatoSelecionado.id;
             novoContato.Nome = contatoSelecionado.Nome;
             novoContato.Email = contatoSelecionado.Email;
             novoContato.Telefone = contatoSelecionado.Telefone;
@@ -57,16 +57,18 @@ namespace eAgenda.WinApp.ModuloContato
 
             if (res == DialogResult.OK)
             {
-                string status = _repositorioContato.Editar(novoContato);
+                string status = _repositorioContato.Editar(novoContato, contatoSelecionado);
                 if (status == "REGISTRO_VALIDO")
                 {
+                    //contatoSelecionado = novoContato;
                     MessageBox.Show("Contato editado com sucesso!", "Contato", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    contatoSelecionado = novoContato;
+                    CarregarContatosNaTela();
                 }
                 else
+                { 
                     MessageBox.Show($"{status}\nTente novamente", "Contato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                CarregarContatosNaTela();
+                    CarregarContatosNaTela();
+                }
             }
         }
 
