@@ -1,6 +1,7 @@
 ﻿using eAgenda.Dominio;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloContato
@@ -60,12 +61,11 @@ namespace eAgenda.WinApp.ModuloContato
                 string status = _repositorioContato.Editar(novoContato, contatoSelecionado);
                 if (status == "REGISTRO_VALIDO")
                 {
-                    //contatoSelecionado = novoContato;
                     MessageBox.Show("Contato editado com sucesso!", "Contato", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     CarregarContatosNaTela();
                 }
                 else
-                { 
+                {
                     MessageBox.Show($"{status}\nTente novamente", "Contato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     CarregarContatosNaTela();
                 }
@@ -88,6 +88,14 @@ namespace eAgenda.WinApp.ModuloContato
                 _repositorioContato.Excluir(contatoSelecionado);
                 CarregarContatosNaTela();
             }
+        }
+        private void buttonVisualizarNormal_Click(object sender, EventArgs e)
+        {
+            CarregarContatosNaTela();
+        }
+        private void buttonVisualizarCargo_Click(object sender, EventArgs e)
+        {
+            CarregarContatosPorGrupo();
         }
 
         private void buttonSair_Click(object sender, EventArgs e)
@@ -120,5 +128,20 @@ namespace eAgenda.WinApp.ModuloContato
                 listBoxContato.Items.Add(c);
             }
         }
+
+        private void CarregarContatosPorGrupo()
+        {
+            var contatosPorCargo = _repositorioContato.SelecionarTodos()
+                                                    .OrderBy(x => x.Cargo)
+                                                    .ToList();
+
+            listBoxContato.Items.Clear();
+
+            foreach (var c in contatosPorCargo)
+            {
+                listBoxContato.Items.Add(c);
+            }
+        }
+
     }
 }

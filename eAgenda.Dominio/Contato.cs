@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.RegularExpressions;
 
 namespace eAgenda.Dominio
 {
-    public class Contato : EntidadeBase
+    public class Contato : EntidadeBase, IEnumerable
     {
         #region Atributos
         private string nome;
@@ -31,7 +32,7 @@ namespace eAgenda.Dominio
         #region Overrides
         public override string ToString()
         {
-            return $"id: {id} Nome: {Nome} Email: {Email} Telefone: {Telefone} Empresa: {Empresa} Cargo: {Cargo}";
+            return $"ID: {id} Nome: {Nome} Email: {Email} Telefone: {Telefone} Empresa: {Empresa} Cargo: {Cargo}";
         }
 
         public override string Validar()
@@ -58,6 +59,11 @@ namespace eAgenda.Dominio
                 sb.Append("REGISTRO_VALIDO");
 
             return sb.ToString();
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            throw new System.NotImplementedException();
         }
         #endregion
     }
