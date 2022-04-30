@@ -1,12 +1,6 @@
 ﻿using eAgenda.Dominio;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloContato
@@ -27,11 +21,11 @@ namespace eAgenda.WinApp.ModuloContato
 
             DialogResult res = telaCadContato.ShowDialog();
 
-            if(res == DialogResult.OK)
+            if (res == DialogResult.OK)
             {
                 string status = _repositorioContato.Inserir(telaCadContato.Contato);
 
-                if(status == "REGISTRO_VALIDO")
+                if (status == "REGISTRO_VALIDO")
                     MessageBox.Show("Contato inserido com sucesso!", "Contato", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 else
                     MessageBox.Show($"{status}\nTente novamente", "Contato", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -44,21 +38,31 @@ namespace eAgenda.WinApp.ModuloContato
         {
             Contato contatoSelecionado = (Contato)listBoxContato.SelectedItem;
 
+            Contato novoContato = new();
+
+            //novoContato = contatoSelecionado;
+            novoContato.Nome = contatoSelecionado.Nome;
+            novoContato.Email = contatoSelecionado.Email;
+            novoContato.Telefone = contatoSelecionado.Telefone;
+            novoContato.Empresa = contatoSelecionado.Empresa;
+            novoContato.Cargo = contatoSelecionado.Cargo;
 
             bool temAlgo = VerificarContinuidade(contatoSelecionado, "Editar");
             if (!temAlgo)
                 return;
 
-            TelaCadastrarContato telaCadContato = new(contatoSelecionado);
-            //telaCadContato.Contato = contatoSelecionado;
+            TelaCadastrarContato telaCadContato = new(novoContato); // Povoa com as mesmas informações sem editar as antigas
 
             DialogResult res = telaCadContato.ShowDialog();
 
             if (res == DialogResult.OK)
             {
-                string status = _repositorioContato.Editar(telaCadContato.Contato, telaCadContato.Contato.id);
+                string status = _repositorioContato.Editar(novoContato);
                 if (status == "REGISTRO_VALIDO")
+                {
                     MessageBox.Show("Contato editado com sucesso!", "Contato", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    contatoSelecionado = novoContato;
+                }
                 else
                     MessageBox.Show($"{status}\nTente novamente", "Contato", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -77,7 +81,7 @@ namespace eAgenda.WinApp.ModuloContato
             DialogResult resultado = MessageBox.Show("Excluir esta contato?",
                 "Excluir", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-            if(resultado == DialogResult.OK)
+            if (resultado == DialogResult.OK)
             {
                 _repositorioContato.Excluir(contatoSelecionado);
                 CarregarContatosNaTela();

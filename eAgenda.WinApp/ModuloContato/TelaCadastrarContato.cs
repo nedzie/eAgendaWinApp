@@ -13,7 +13,7 @@ namespace eAgenda.WinApp.ModuloContato
         public TelaCadastrarContato(Contato contato)
         {
             InitializeComponent();
-            Contato = contato;
+            _contato = contato;
             if (contato != null)
             {
                 textBoxNome.Text = contato.Nome;
@@ -32,7 +32,6 @@ namespace eAgenda.WinApp.ModuloContato
 
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
-
             this.Close();
         }
 
