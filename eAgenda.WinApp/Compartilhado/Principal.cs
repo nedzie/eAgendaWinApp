@@ -14,12 +14,15 @@ namespace eAgenda.WinApp
 {
     public partial class Principal : Form
     {
+        Repositorio<Contato> repositorioContato;
+        TelaContato? telaContato;
         public Principal()
         {
-            Repositorio<Contato> repositorioContato = new();
+            InitializeComponent();
+            repositorioContato = new Repositorio<Contato>();
+            //telaContato = new(repositorioContato);
             //Repositorio<Compromisso> repositorioCompromisso = new();
             //Repositorio<Tarefa> repositorioTarefa = new();
-            InitializeComponent();
         }
 
         private void buttonCompromisso_Click(object sender, EventArgs e)
@@ -29,7 +32,7 @@ namespace eAgenda.WinApp
 
         private void buttonContato_Click(object sender, EventArgs e)
         {
-            TelaContato telaContato = new();
+            telaContato = new(repositorioContato);
             telaContato.Show();
         }
 

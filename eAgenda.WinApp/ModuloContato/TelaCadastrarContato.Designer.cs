@@ -1,6 +1,6 @@
 ﻿namespace eAgenda.WinApp.ModuloContato
 {
-    partial class CadastrarContato
+    partial class TelaCadastrarContato
     {
         /// <summary>
         /// Required designer variable.
@@ -57,7 +57,7 @@
             this.textBoxNome.Location = new System.Drawing.Point(52, 51);
             this.textBoxNome.Name = "textBoxNome";
             this.textBoxNome.Size = new System.Drawing.Size(247, 23);
-            this.textBoxNome.TabIndex = 1;
+            this.textBoxNome.TabIndex = 0;
             // 
             // labelEmail
             // 
@@ -74,14 +74,14 @@
             this.textBoxEmail.Location = new System.Drawing.Point(52, 95);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(247, 23);
-            this.textBoxEmail.TabIndex = 3;
+            this.textBoxEmail.TabIndex = 1;
             // 
             // textBoxCargo
             // 
             this.textBoxCargo.Location = new System.Drawing.Point(52, 228);
             this.textBoxCargo.Name = "textBoxCargo";
             this.textBoxCargo.Size = new System.Drawing.Size(247, 23);
-            this.textBoxCargo.TabIndex = 7;
+            this.textBoxCargo.TabIndex = 4;
             // 
             // labelCargo
             // 
@@ -98,7 +98,7 @@
             this.textBoxEmpresa.Location = new System.Drawing.Point(53, 184);
             this.textBoxEmpresa.Name = "textBoxEmpresa";
             this.textBoxEmpresa.Size = new System.Drawing.Size(247, 23);
-            this.textBoxEmpresa.TabIndex = 5;
+            this.textBoxEmpresa.TabIndex = 3;
             // 
             // labelEmpresa
             // 
@@ -115,7 +115,7 @@
             this.textBoxTelefone.Location = new System.Drawing.Point(53, 139);
             this.textBoxTelefone.Name = "textBoxTelefone";
             this.textBoxTelefone.Size = new System.Drawing.Size(247, 23);
-            this.textBoxTelefone.TabIndex = 9;
+            this.textBoxTelefone.TabIndex = 2;
             // 
             // labelTelefone
             // 
@@ -136,7 +136,7 @@
             this.buttonInserir.Location = new System.Drawing.Point(53, 268);
             this.buttonInserir.Name = "buttonInserir";
             this.buttonInserir.Size = new System.Drawing.Size(120, 45);
-            this.buttonInserir.TabIndex = 10;
+            this.buttonInserir.TabIndex = 5;
             this.buttonInserir.Text = "Inserir";
             this.buttonInserir.UseVisualStyleBackColor = false;
             this.buttonInserir.Click += new System.EventHandler(this.buttonInserir_Click);
@@ -149,12 +149,12 @@
             this.buttonCancelar.Location = new System.Drawing.Point(179, 268);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(120, 45);
-            this.buttonCancelar.TabIndex = 11;
+            this.buttonCancelar.TabIndex = 6;
             this.buttonCancelar.Text = "Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = false;
             this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
-            // CadastrarContato
+            // TelaCadastrarContato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -175,7 +175,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "CadastrarContato";
+            this.Name = "TelaCadastrarContato";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastrar contato";

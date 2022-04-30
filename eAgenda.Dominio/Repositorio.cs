@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace eAgenda.Dominio
 {
@@ -15,26 +14,30 @@ namespace eAgenda.Dominio
         }
         #endregion
 
-        public virtual void Inserir(T registro)
+        public virtual string Inserir(T registro)
         {
+            string resultado = registro.Validar();
+            if (resultado != "REGISTRO_VALIDO")
+                return resultado;
+
             registro.id = ++contadorID;
             registros.Add(registro);
+            return "REGISTRO_VALIDO";
         }
 
-        public virtual void Editar(T registroSelecionado)
+        public virtual string Editar(T registro, int idQueSeraEditado)
         {
-            foreach (var item in registros)
-            {
-                if (item.id == registroSelecionado.id)
-                { 
-                    //item.Nome = tarefaAtualizada.Titulo;
-                    break;
-                }
-            }
-            //registroSelecionado.id = idAntigo;
-            //registros.Insert(registroSelecionado.id, registroSelecionado);
-            //return registros.Remove(registros.Find(x => x.id == idAntigo));
+            string resultado = registro.Validar();
+            if (resultado != "REGISTRO_VALIDO")
+                return resultado;
+
+            registro.id = idQueSeraEditado;
+            registros.Insert(registro.id, registro);
+            registros.Remove(registros.Find(x => x.id == idQueSeraEditado)); // Talvez dê ruim
+
+            return "REGISTRO_VALIDO";
         }
+
 
         public virtual bool Excluir(T registro)
         {
@@ -44,6 +47,15 @@ namespace eAgenda.Dominio
         public List<T> SelecionarTodos()
         {
             return registros;
+        }
+
+        public bool ExisteRegistro()
+        {
+            int quantia = registros.Count;
+            if (quantia == 0)
+                return false;
+            else
+                return true;
         }
     }
 }

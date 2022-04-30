@@ -8,4 +8,8 @@
     <ProjectReference Include="..\eAgenda.Dominio\eAgenda.Dominio.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ModuloContato\" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,8 @@
-﻿namespace eAgenda.Dominio
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Text.RegularExpressions;
+
+namespace eAgenda.Dominio
 {
     public class Contato : EntidadeBase
     {
@@ -16,32 +20,44 @@
         public string Cargo { get; set; }
         #endregion
 
-        #region Construtores
+        #region Construtor
 
         public Contato()
         {
 
-        }
-
-        public Contato(string nome, string email, string telefone, string empresa, string cargo)
-        {
-            this.nome = nome;
-            this.email = email;
-            this.telefone = telefone;
-            Empresa = empresa;
-            Cargo = cargo;
         }
         #endregion
 
         #region Overrides
         public override string ToString()
         {
-            return "id: " + id + "\n" +
-                   "Nome: " + Nome + "\n" +
-                   "Email: " + Email + "\n" +
-                   "Telefone: " + Telefone + "\n" +
-                   "Empresa: " + Empresa + "\n" +
-                   "Cargo: " + Cargo + "\n";
+            return $"id: {id} Nome: {Nome} Email: {Email} Telefone: {Telefone} Empresa: {Empresa} Cargo: {Cargo}";
+        }
+
+        public override string Validar()
+        {
+            StringBuilder sb = new ();
+
+            if (string.IsNullOrEmpty(Nome))
+                sb.AppendLine("O nome do contato é obrigatório");
+            if (string.IsNullOrEmpty(Email))
+                sb.AppendLine("O e-mail do contato é obrigatório");
+            if (string.IsNullOrEmpty(Telefone))
+                sb.AppendLine("O telefone do contato é obrigatório");
+
+            EmailAddressAttribute e = new();
+            if (!e.IsValid(Email))
+                sb.AppendLine("O email do contato está fora dos padrões");
+            
+            string padrao = @"^\([1-9]{2}\) (?:[2-8]|9 [1-9])[0-9]{3}\-[0-9]{4}$";
+            if (!Regex.Match(Telefone, padrao).Success)
+                sb.AppendLine("O telefone do contato está fora dos padrões");
+
+
+            if (sb.Length == 0)
+                sb.Append("REGISTRO_VALIDO");
+
+            return sb.ToString();
         }
         #endregion
     }
