@@ -69,8 +69,14 @@ namespace eAgenda.WinApp.ModuloTarefa
 
         private void buttonAdicionarItens_Click(object sender, EventArgs e)
         {
-            TelaItens telaItens = new();
-            telaItens.Show();
+            Tarefa tarefaSelecionada = (Tarefa)listBoxTarefasPendentes.SelectedItem;
+            TelaCadastrarItens telaItens = new(tarefaSelecionada);
+            DialogResult res = telaItens.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                tarefaSelecionada.AdicionarItens(telaItens.ItensAdicionados);
+                CarregarTarefasNaTela();
+            }
         }
     }
 }

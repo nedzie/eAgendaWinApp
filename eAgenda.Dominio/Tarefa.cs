@@ -35,6 +35,15 @@ namespace eAgenda.Dominio
             DataConclusao = null;
         }
 
+        public void AdicionarItens(List<Item> itens)
+        {
+            foreach (Item item in itens)
+            {
+                if (!Itens.Exists(x => x.Equals(item)))
+                    this.itens.Add(item);
+            }
+        }
+
         public override string Validar()
         {
             StringBuilder sb = new();

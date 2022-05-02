@@ -34,7 +34,12 @@ namespace eAgenda.WinApp.ModuloTarefa
         private void buttonInserir_Click(object sender, EventArgs e)
         {
             _tarefa!.Titulo = textBoxTituloTarefa.Text;
-            _tarefa.Prioridade = (PrioridadeEnum)comboBoxPrioridades.SelectedIndex;
+            if(comboBoxPrioridades.SelectedItem == null)
+            {
+                _tarefa.Prioridade = PrioridadeEnum.Baixa;
+            }
+            else
+                _tarefa.Prioridade = (PrioridadeEnum)comboBoxPrioridades.SelectedIndex;
         }
     }
 }
