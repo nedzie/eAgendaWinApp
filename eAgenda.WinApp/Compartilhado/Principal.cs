@@ -24,14 +24,11 @@ namespace eAgenda.WinApp
             InitializeComponent();
             repositorioContato = new Repositorio<Contato>();
             repositorioCompromisso = new Repositorio<Compromisso>();
-            //telaContato = new(repositorioContato);
-            //Repositorio<Compromisso> repositorioCompromisso = new();
-            //Repositorio<Tarefa> repositorioTarefa = new();
         }
 
         private void buttonCompromisso_Click(object sender, EventArgs e)
         {
-            telaCompromisso = new(repositorioCompromisso);
+            telaCompromisso = new(repositorioCompromisso, repositorioContato);
             telaCompromisso.Show();
         }
 

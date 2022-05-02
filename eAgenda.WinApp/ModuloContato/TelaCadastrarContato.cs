@@ -30,11 +30,6 @@ namespace eAgenda.WinApp.ModuloContato
             set { _contato = value; }
         }
 
-        private void buttonCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void buttonInserir_Click(object sender, EventArgs e)
         {
             _contato!.Nome = textBoxNome.Text;
@@ -42,6 +37,10 @@ namespace eAgenda.WinApp.ModuloContato
             _contato!.Telefone = textBoxTelefone.Text;
             _contato!.Empresa = textBoxEmpresa.Text;
             _contato!.Cargo = textBoxCargo.Text;
+        }
+        private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

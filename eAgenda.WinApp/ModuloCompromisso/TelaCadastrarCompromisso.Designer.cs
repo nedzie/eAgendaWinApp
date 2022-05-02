@@ -33,13 +33,16 @@
             this.labelData = new System.Windows.Forms.Label();
             this.labelHoraFim = new System.Windows.Forms.Label();
             this.labelHoraInicio = new System.Windows.Forms.Label();
-            this.textBoxEmail = new System.Windows.Forms.TextBox();
+            this.textBoxLocal = new System.Windows.Forms.TextBox();
             this.labelLocal = new System.Windows.Forms.Label();
-            this.textBoxNome = new System.Windows.Forms.TextBox();
+            this.textBoxAssunto = new System.Windows.Forms.TextBox();
             this.labelAssunto = new System.Windows.Forms.Label();
             this.maskedTextBoxData = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBoxHoraInicio = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBoxHoraFim = new System.Windows.Forms.MaskedTextBox();
+            this.listBoxContatos = new System.Windows.Forms.ListBox();
+            this.labelContatoAtual = new System.Windows.Forms.Label();
+            this.labelContato = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonCancelar
@@ -53,6 +56,7 @@
             this.buttonCancelar.TabIndex = 18;
             this.buttonCancelar.Text = "Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = false;
+            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
             // buttonInserir
             // 
@@ -66,6 +70,7 @@
             this.buttonInserir.TabIndex = 17;
             this.buttonInserir.Text = "Inserir";
             this.buttonInserir.UseVisualStyleBackColor = false;
+            this.buttonInserir.Click += new System.EventHandler(this.buttonInserir_Click);
             // 
             // labelData
             // 
@@ -97,12 +102,12 @@
             this.labelHoraInicio.TabIndex = 16;
             this.labelHoraInicio.Text = "Hora início:";
             // 
-            // textBoxEmail
+            // textBoxLocal
             // 
-            this.textBoxEmail.Location = new System.Drawing.Point(12, 71);
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(247, 23);
-            this.textBoxEmail.TabIndex = 11;
+            this.textBoxLocal.Location = new System.Drawing.Point(12, 71);
+            this.textBoxLocal.Name = "textBoxLocal";
+            this.textBoxLocal.Size = new System.Drawing.Size(247, 23);
+            this.textBoxLocal.TabIndex = 11;
             // 
             // labelLocal
             // 
@@ -114,12 +119,12 @@
             this.labelLocal.TabIndex = 13;
             this.labelLocal.Text = "Local:";
             // 
-            // textBoxNome
+            // textBoxAssunto
             // 
-            this.textBoxNome.Location = new System.Drawing.Point(12, 27);
-            this.textBoxNome.Name = "textBoxNome";
-            this.textBoxNome.Size = new System.Drawing.Size(247, 23);
-            this.textBoxNome.TabIndex = 9;
+            this.textBoxAssunto.Location = new System.Drawing.Point(12, 27);
+            this.textBoxAssunto.Name = "textBoxAssunto";
+            this.textBoxAssunto.Size = new System.Drawing.Size(247, 23);
+            this.textBoxAssunto.TabIndex = 9;
             // 
             // labelAssunto
             // 
@@ -158,12 +163,43 @@
             this.maskedTextBoxHoraFim.TabIndex = 23;
             this.maskedTextBoxHoraFim.ValidatingType = typeof(System.DateTime);
             // 
+            // listBoxContatos
+            // 
+            this.listBoxContatos.FormattingEnabled = true;
+            this.listBoxContatos.ItemHeight = 15;
+            this.listBoxContatos.Location = new System.Drawing.Point(274, 72);
+            this.listBoxContatos.Name = "listBoxContatos";
+            this.listBoxContatos.Size = new System.Drawing.Size(381, 214);
+            this.listBoxContatos.TabIndex = 24;
+            // 
+            // labelContatoAtual
+            // 
+            this.labelContatoAtual.AutoSize = true;
+            this.labelContatoAtual.Location = new System.Drawing.Point(274, 27);
+            this.labelContatoAtual.Name = "labelContatoAtual";
+            this.labelContatoAtual.Size = new System.Drawing.Size(82, 15);
+            this.labelContatoAtual.TabIndex = 25;
+            this.labelContatoAtual.Text = "Contato atual:";
+            // 
+            // labelContato
+            // 
+            this.labelContato.AutoSize = true;
+            this.labelContato.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelContato.Location = new System.Drawing.Point(362, 27);
+            this.labelContato.Name = "labelContato";
+            this.labelContato.Size = new System.Drawing.Size(55, 15);
+            this.labelContato.TabIndex = 26;
+            this.labelContato.Text = "Nenhum";
+            // 
             // TelaCadastrarCompromisso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(271, 306);
+            this.ClientSize = new System.Drawing.Size(667, 306);
+            this.Controls.Add(this.labelContato);
+            this.Controls.Add(this.labelContatoAtual);
+            this.Controls.Add(this.listBoxContatos);
             this.Controls.Add(this.maskedTextBoxHoraFim);
             this.Controls.Add(this.maskedTextBoxHoraInicio);
             this.Controls.Add(this.maskedTextBoxData);
@@ -172,14 +208,15 @@
             this.Controls.Add(this.labelData);
             this.Controls.Add(this.labelHoraFim);
             this.Controls.Add(this.labelHoraInicio);
-            this.Controls.Add(this.textBoxEmail);
+            this.Controls.Add(this.textBoxLocal);
             this.Controls.Add(this.labelLocal);
-            this.Controls.Add(this.textBoxNome);
+            this.Controls.Add(this.textBoxAssunto);
             this.Controls.Add(this.labelAssunto);
             this.Name = "TelaCadastrarCompromisso";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ajustar Compromisso";
+            this.Load += new System.EventHandler(this.TelaCadastrarCompromisso_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,12 +229,15 @@
         private System.Windows.Forms.Label labelData;
         private System.Windows.Forms.Label labelHoraFim;
         private System.Windows.Forms.Label labelHoraInicio;
-        private System.Windows.Forms.TextBox textBoxEmail;
+        private System.Windows.Forms.TextBox textBoxLocal;
         private System.Windows.Forms.Label labelLocal;
-        private System.Windows.Forms.TextBox textBoxNome;
+        private System.Windows.Forms.TextBox textBoxAssunto;
         private System.Windows.Forms.Label labelAssunto;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxData;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxHoraInicio;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxHoraFim;
+        private System.Windows.Forms.ListBox listBoxContatos;
+        private System.Windows.Forms.Label labelContatoAtual;
+        private System.Windows.Forms.Label labelContato;
     }
 }

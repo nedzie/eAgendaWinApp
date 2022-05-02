@@ -36,8 +36,12 @@
             this.buttonInserir = new System.Windows.Forms.Button();
             this.tabControlCompromissos = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.listBoxCompromissosPassados = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.listBoxCompromissosFuturos = new System.Windows.Forms.ListBox();
             this.tabControlCompromissos.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonVisualizarNormal
@@ -87,6 +91,7 @@
             this.buttonExcluir.TabIndex = 9;
             this.buttonExcluir.Text = "Excluir";
             this.buttonExcluir.UseVisualStyleBackColor = false;
+            this.buttonExcluir.Click += new System.EventHandler(this.buttonExcluir_Click);
             // 
             // buttonEditar
             // 
@@ -99,6 +104,7 @@
             this.buttonEditar.TabIndex = 8;
             this.buttonEditar.Text = "Editar";
             this.buttonEditar.UseVisualStyleBackColor = false;
+            this.buttonEditar.Click += new System.EventHandler(this.buttonEditar_Click);
             // 
             // buttonInserir
             // 
@@ -125,6 +131,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.listBoxCompromissosPassados);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -133,8 +140,18 @@
             this.tabPage1.Text = "Compromissos passados";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // listBoxCompromissosPassados
+            // 
+            this.listBoxCompromissosPassados.FormattingEnabled = true;
+            this.listBoxCompromissosPassados.ItemHeight = 15;
+            this.listBoxCompromissosPassados.Location = new System.Drawing.Point(3, 6);
+            this.listBoxCompromissosPassados.Name = "listBoxCompromissosPassados";
+            this.listBoxCompromissosPassados.Size = new System.Drawing.Size(633, 259);
+            this.listBoxCompromissosPassados.TabIndex = 0;
+            // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.listBoxCompromissosFuturos);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -142,6 +159,15 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Compromissos futuros";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // listBoxCompromissosFuturos
+            // 
+            this.listBoxCompromissosFuturos.FormattingEnabled = true;
+            this.listBoxCompromissosFuturos.ItemHeight = 15;
+            this.listBoxCompromissosFuturos.Location = new System.Drawing.Point(5, 7);
+            this.listBoxCompromissosFuturos.Name = "listBoxCompromissosFuturos";
+            this.listBoxCompromissosFuturos.Size = new System.Drawing.Size(633, 259);
+            this.listBoxCompromissosFuturos.TabIndex = 1;
             // 
             // TelaCompromisso
             // 
@@ -162,6 +188,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tela Compromisso";
             this.tabControlCompromissos.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -177,5 +205,7 @@
         private System.Windows.Forms.TabControl tabControlCompromissos;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.ListBox listBoxCompromissosPassados;
+        private System.Windows.Forms.ListBox listBoxCompromissosFuturos;
     }
 }

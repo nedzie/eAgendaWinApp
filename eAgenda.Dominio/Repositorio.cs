@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace eAgenda.Dominio
@@ -44,6 +45,17 @@ namespace eAgenda.Dominio
         public List<T> SelecionarTodos()
         {
             return registros;
+        }
+
+        public List<T> Filtrar(Predicate<T> condicao)
+        {
+            List<T> registrosFiltrados = new List<T>();
+
+            foreach (T registro in registros)
+                if (condicao(registro))
+                    registrosFiltrados.Add(registro);
+
+            return registrosFiltrados;
         }
 
         public bool ExisteRegistro()

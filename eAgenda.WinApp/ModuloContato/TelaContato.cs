@@ -80,7 +80,7 @@ namespace eAgenda.WinApp.ModuloContato
             if (!temAlgo)
                 return;
 
-            DialogResult resultado = MessageBox.Show("Excluir esta contato?",
+            DialogResult resultado = MessageBox.Show("Excluir contato?",
                 "Excluir", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (resultado == DialogResult.OK)
