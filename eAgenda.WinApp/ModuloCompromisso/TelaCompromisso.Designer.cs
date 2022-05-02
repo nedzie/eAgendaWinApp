@@ -34,6 +34,10 @@
             this.buttonExcluir = new System.Windows.Forms.Button();
             this.buttonEditar = new System.Windows.Forms.Button();
             this.buttonInserir = new System.Windows.Forms.Button();
+            this.tabControlCompromissos = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabControlCompromissos.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonVisualizarNormal
@@ -107,6 +111,37 @@
             this.buttonInserir.TabIndex = 7;
             this.buttonInserir.Text = "Inserir";
             this.buttonInserir.UseVisualStyleBackColor = false;
+            this.buttonInserir.Click += new System.EventHandler(this.buttonInserir_Click);
+            // 
+            // tabControlCompromissos
+            // 
+            this.tabControlCompromissos.Controls.Add(this.tabPage1);
+            this.tabControlCompromissos.Controls.Add(this.tabPage2);
+            this.tabControlCompromissos.Location = new System.Drawing.Point(138, 12);
+            this.tabControlCompromissos.Name = "tabControlCompromissos";
+            this.tabControlCompromissos.SelectedIndex = 0;
+            this.tabControlCompromissos.Size = new System.Drawing.Size(650, 300);
+            this.tabControlCompromissos.TabIndex = 13;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(642, 272);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Compromissos passados";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(642, 272);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Compromissos futuros";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // TelaCompromisso
             // 
@@ -114,6 +149,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.tabControlCompromissos);
             this.Controls.Add(this.buttonVisualizarNormal);
             this.Controls.Add(this.buttonVisualizarCargo);
             this.Controls.Add(this.buttonSair);
@@ -124,7 +160,8 @@
             this.MinimizeBox = false;
             this.Name = "TelaCompromisso";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TelaCompromisso";
+            this.Text = "Tela Compromisso";
+            this.tabControlCompromissos.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -137,5 +174,8 @@
         private System.Windows.Forms.Button buttonExcluir;
         private System.Windows.Forms.Button buttonEditar;
         private System.Windows.Forms.Button buttonInserir;
+        private System.Windows.Forms.TabControl tabControlCompromissos;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }

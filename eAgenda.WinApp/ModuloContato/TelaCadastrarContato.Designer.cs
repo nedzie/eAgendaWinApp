@@ -46,7 +46,7 @@
             // 
             this.labelNome.AutoSize = true;
             this.labelNome.ForeColor = System.Drawing.Color.White;
-            this.labelNome.Location = new System.Drawing.Point(52, 33);
+            this.labelNome.Location = new System.Drawing.Point(12, 5);
             this.labelNome.Name = "labelNome";
             this.labelNome.Size = new System.Drawing.Size(43, 15);
             this.labelNome.TabIndex = 0;
@@ -54,7 +54,7 @@
             // 
             // textBoxNome
             // 
-            this.textBoxNome.Location = new System.Drawing.Point(52, 51);
+            this.textBoxNome.Location = new System.Drawing.Point(12, 23);
             this.textBoxNome.Name = "textBoxNome";
             this.textBoxNome.Size = new System.Drawing.Size(247, 23);
             this.textBoxNome.TabIndex = 0;
@@ -63,7 +63,7 @@
             // 
             this.labelEmail.AutoSize = true;
             this.labelEmail.ForeColor = System.Drawing.Color.White;
-            this.labelEmail.Location = new System.Drawing.Point(52, 77);
+            this.labelEmail.Location = new System.Drawing.Point(12, 49);
             this.labelEmail.Name = "labelEmail";
             this.labelEmail.Size = new System.Drawing.Size(44, 15);
             this.labelEmail.TabIndex = 2;
@@ -71,14 +71,14 @@
             // 
             // textBoxEmail
             // 
-            this.textBoxEmail.Location = new System.Drawing.Point(52, 95);
+            this.textBoxEmail.Location = new System.Drawing.Point(12, 67);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(247, 23);
             this.textBoxEmail.TabIndex = 1;
             // 
             // textBoxCargo
             // 
-            this.textBoxCargo.Location = new System.Drawing.Point(52, 228);
+            this.textBoxCargo.Location = new System.Drawing.Point(12, 200);
             this.textBoxCargo.Name = "textBoxCargo";
             this.textBoxCargo.Size = new System.Drawing.Size(247, 23);
             this.textBoxCargo.TabIndex = 4;
@@ -87,7 +87,7 @@
             // 
             this.labelCargo.AutoSize = true;
             this.labelCargo.ForeColor = System.Drawing.Color.White;
-            this.labelCargo.Location = new System.Drawing.Point(52, 210);
+            this.labelCargo.Location = new System.Drawing.Point(12, 182);
             this.labelCargo.Name = "labelCargo";
             this.labelCargo.Size = new System.Drawing.Size(42, 15);
             this.labelCargo.TabIndex = 6;
@@ -95,7 +95,7 @@
             // 
             // textBoxEmpresa
             // 
-            this.textBoxEmpresa.Location = new System.Drawing.Point(53, 184);
+            this.textBoxEmpresa.Location = new System.Drawing.Point(13, 156);
             this.textBoxEmpresa.Name = "textBoxEmpresa";
             this.textBoxEmpresa.Size = new System.Drawing.Size(247, 23);
             this.textBoxEmpresa.TabIndex = 3;
@@ -104,7 +104,7 @@
             // 
             this.labelEmpresa.AutoSize = true;
             this.labelEmpresa.ForeColor = System.Drawing.Color.White;
-            this.labelEmpresa.Location = new System.Drawing.Point(53, 166);
+            this.labelEmpresa.Location = new System.Drawing.Point(13, 138);
             this.labelEmpresa.Name = "labelEmpresa";
             this.labelEmpresa.Size = new System.Drawing.Size(55, 15);
             this.labelEmpresa.TabIndex = 4;
@@ -112,7 +112,7 @@
             // 
             // textBoxTelefone
             // 
-            this.textBoxTelefone.Location = new System.Drawing.Point(53, 139);
+            this.textBoxTelefone.Location = new System.Drawing.Point(13, 111);
             this.textBoxTelefone.Name = "textBoxTelefone";
             this.textBoxTelefone.Size = new System.Drawing.Size(247, 23);
             this.textBoxTelefone.TabIndex = 2;
@@ -121,7 +121,7 @@
             // 
             this.labelTelefone.AutoSize = true;
             this.labelTelefone.ForeColor = System.Drawing.Color.White;
-            this.labelTelefone.Location = new System.Drawing.Point(53, 121);
+            this.labelTelefone.Location = new System.Drawing.Point(13, 93);
             this.labelTelefone.Name = "labelTelefone";
             this.labelTelefone.Size = new System.Drawing.Size(54, 15);
             this.labelTelefone.TabIndex = 8;
@@ -133,7 +133,7 @@
             this.buttonInserir.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonInserir.FlatAppearance.BorderSize = 0;
             this.buttonInserir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonInserir.Location = new System.Drawing.Point(53, 268);
+            this.buttonInserir.Location = new System.Drawing.Point(13, 240);
             this.buttonInserir.Name = "buttonInserir";
             this.buttonInserir.Size = new System.Drawing.Size(120, 45);
             this.buttonInserir.TabIndex = 5;
@@ -146,7 +146,7 @@
             this.buttonCancelar.BackColor = System.Drawing.Color.White;
             this.buttonCancelar.FlatAppearance.BorderSize = 0;
             this.buttonCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCancelar.Location = new System.Drawing.Point(179, 268);
+            this.buttonCancelar.Location = new System.Drawing.Point(139, 240);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(120, 45);
             this.buttonCancelar.TabIndex = 6;
@@ -159,7 +159,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(368, 353);
+            this.ClientSize = new System.Drawing.Size(273, 298);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonInserir);
             this.Controls.Add(this.textBoxTelefone);
@@ -177,7 +177,7 @@
             this.MinimizeBox = false;
             this.Name = "TelaCadastrarContato";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cadastrar contato";
+            this.Text = "Ajustar Contato";
             this.ResumeLayout(false);
             this.PerformLayout();
 

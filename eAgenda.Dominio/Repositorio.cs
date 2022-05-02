@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace eAgenda.Dominio
 {
@@ -14,7 +15,7 @@ namespace eAgenda.Dominio
         }
         #endregion
 
-        public virtual string Inserir(T registro)
+        public string Inserir(T registro)
         {
             string resultado = registro.Validar();
             if (resultado != "REGISTRO_VALIDO")
@@ -25,7 +26,7 @@ namespace eAgenda.Dominio
             return "REGISTRO_VALIDO";
         }
 
-        public virtual string Editar(T novoRegistro, T antigoRegistro)
+        public string Editar(T novoRegistro, T antigoRegistro)
         {
             string resultado = novoRegistro.Validar();
             if (resultado != "REGISTRO_VALIDO")
@@ -35,7 +36,7 @@ namespace eAgenda.Dominio
             registros[indice] = novoRegistro;
             return "REGISTRO_VALIDO";
         }
-        public virtual bool Excluir(T registro)
+        public bool Excluir(T registro)
         {
             return registros.Remove(registro);
         }

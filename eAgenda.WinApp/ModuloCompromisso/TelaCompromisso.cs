@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eAgenda.Dominio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,19 @@ namespace eAgenda.WinApp.ModuloCompromisso
 {
     public partial class TelaCompromisso : Form
     {
-        public TelaCompromisso()
+        Repositorio<Compromisso> _repositorioCompromisso;
+        public TelaCompromisso(Repositorio<Compromisso> repositorio)
         {
             InitializeComponent();
+            _repositorioCompromisso = repositorio;
+            //CarregarCompromissosPassados();
+            //CarregarCompromissosFuturos();
+        }
+
+        private void buttonInserir_Click(object sender, EventArgs e)
+        {
+            TelaCadastrarCompromisso telaCadCompromisso = new(new Compromisso());
+            DialogResult res = telaCadCompromisso.ShowDialog();
         }
     }
 }
