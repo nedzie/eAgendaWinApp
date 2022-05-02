@@ -34,9 +34,10 @@
             this.buttonInserir = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageTarefasPendentes = new System.Windows.Forms.TabPage();
-            this.tabPageTarefasConcluidas = new System.Windows.Forms.TabPage();
             this.listBoxTarefasPendentes = new System.Windows.Forms.ListBox();
+            this.tabPageTarefasConcluidas = new System.Windows.Forms.TabPage();
             this.listBoxTarefasConcluidas = new System.Windows.Forms.ListBox();
+            this.buttonAdicionarItens = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageTarefasPendentes.SuspendLayout();
             this.tabPageTarefasConcluidas.SuspendLayout();
@@ -47,12 +48,13 @@
             this.buttonSair.BackColor = System.Drawing.Color.White;
             this.buttonSair.FlatAppearance.BorderSize = 0;
             this.buttonSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSair.Location = new System.Drawing.Point(12, 165);
+            this.buttonSair.Location = new System.Drawing.Point(12, 216);
             this.buttonSair.Name = "buttonSair";
             this.buttonSair.Size = new System.Drawing.Size(120, 45);
             this.buttonSair.TabIndex = 11;
             this.buttonSair.Text = "Sair";
             this.buttonSair.UseVisualStyleBackColor = false;
+            this.buttonSair.Click += new System.EventHandler(this.buttonSair_Click);
             // 
             // buttonExcluir
             // 
@@ -112,6 +114,15 @@
             this.tabPageTarefasPendentes.Text = "Tarefas Pendentes";
             this.tabPageTarefasPendentes.UseVisualStyleBackColor = true;
             // 
+            // listBoxTarefasPendentes
+            // 
+            this.listBoxTarefasPendentes.FormattingEnabled = true;
+            this.listBoxTarefasPendentes.ItemHeight = 15;
+            this.listBoxTarefasPendentes.Location = new System.Drawing.Point(6, 6);
+            this.listBoxTarefasPendentes.Name = "listBoxTarefasPendentes";
+            this.listBoxTarefasPendentes.Size = new System.Drawing.Size(630, 259);
+            this.listBoxTarefasPendentes.TabIndex = 0;
+            // 
             // tabPageTarefasConcluidas
             // 
             this.tabPageTarefasConcluidas.Controls.Add(this.listBoxTarefasConcluidas);
@@ -123,15 +134,6 @@
             this.tabPageTarefasConcluidas.Text = "Tarefas Concluídas";
             this.tabPageTarefasConcluidas.UseVisualStyleBackColor = true;
             // 
-            // listBoxTarefasPendentes
-            // 
-            this.listBoxTarefasPendentes.FormattingEnabled = true;
-            this.listBoxTarefasPendentes.ItemHeight = 15;
-            this.listBoxTarefasPendentes.Location = new System.Drawing.Point(6, 6);
-            this.listBoxTarefasPendentes.Name = "listBoxTarefasPendentes";
-            this.listBoxTarefasPendentes.Size = new System.Drawing.Size(630, 259);
-            this.listBoxTarefasPendentes.TabIndex = 0;
-            // 
             // listBoxTarefasConcluidas
             // 
             this.listBoxTarefasConcluidas.FormattingEnabled = true;
@@ -141,17 +143,32 @@
             this.listBoxTarefasConcluidas.Size = new System.Drawing.Size(630, 259);
             this.listBoxTarefasConcluidas.TabIndex = 0;
             // 
+            // buttonAdicionarItens
+            // 
+            this.buttonAdicionarItens.BackColor = System.Drawing.Color.White;
+            this.buttonAdicionarItens.FlatAppearance.BorderSize = 0;
+            this.buttonAdicionarItens.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAdicionarItens.Location = new System.Drawing.Point(12, 165);
+            this.buttonAdicionarItens.Name = "buttonAdicionarItens";
+            this.buttonAdicionarItens.Size = new System.Drawing.Size(120, 45);
+            this.buttonAdicionarItens.TabIndex = 15;
+            this.buttonAdicionarItens.Text = "Itens";
+            this.buttonAdicionarItens.UseVisualStyleBackColor = false;
+            this.buttonAdicionarItens.Click += new System.EventHandler(this.buttonAdicionarItens_Click);
+            // 
             // TelaTarefa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(800, 329);
+            this.Controls.Add(this.buttonAdicionarItens);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.buttonSair);
             this.Controls.Add(this.buttonExcluir);
             this.Controls.Add(this.buttonEditar);
             this.Controls.Add(this.buttonInserir);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaTarefa";
@@ -175,5 +192,6 @@
         private System.Windows.Forms.ListBox listBoxTarefasPendentes;
         private System.Windows.Forms.TabPage tabPageTarefasConcluidas;
         private System.Windows.Forms.ListBox listBoxTarefasConcluidas;
+        private System.Windows.Forms.Button buttonAdicionarItens;
     }
 }

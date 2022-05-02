@@ -29,9 +29,12 @@
         private void InitializeComponent()
         {
             this.labelTituloTarefa = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBoxTituloTarefa = new System.Windows.Forms.TextBox();
+            this.comboBoxPrioridades = new System.Windows.Forms.ComboBox();
             this.labelPrioridade = new System.Windows.Forms.Label();
+            this.buttonCancelar = new System.Windows.Forms.Button();
+            this.buttonInserir = new System.Windows.Forms.Button();
+            this.listBoxTarefas = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // labelTituloTarefa
@@ -43,24 +46,24 @@
             this.labelTituloTarefa.TabIndex = 0;
             this.labelTituloTarefa.Text = "Título:";
             // 
-            // textBox1
+            // textBoxTituloTarefa
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 27);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(164, 23);
-            this.textBox1.TabIndex = 1;
+            this.textBoxTituloTarefa.Location = new System.Drawing.Point(12, 27);
+            this.textBoxTituloTarefa.Name = "textBoxTituloTarefa";
+            this.textBoxTituloTarefa.Size = new System.Drawing.Size(246, 23);
+            this.textBoxTituloTarefa.TabIndex = 1;
             // 
-            // comboBox1
+            // comboBoxPrioridades
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.comboBoxPrioridades.FormattingEnabled = true;
+            this.comboBoxPrioridades.Items.AddRange(new object[] {
             "Alta",
             "Média",
             "Baixa"});
-            this.comboBox1.Location = new System.Drawing.Point(12, 78);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 2;
+            this.comboBoxPrioridades.Location = new System.Drawing.Point(12, 78);
+            this.comboBoxPrioridades.Name = "comboBoxPrioridades";
+            this.comboBoxPrioridades.Size = new System.Drawing.Size(121, 23);
+            this.comboBoxPrioridades.TabIndex = 2;
             // 
             // labelPrioridade
             // 
@@ -71,15 +74,54 @@
             this.labelPrioridade.TabIndex = 3;
             this.labelPrioridade.Text = "Prioridade:";
             // 
+            // buttonCancelar
+            // 
+            this.buttonCancelar.BackColor = System.Drawing.Color.White;
+            this.buttonCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonCancelar.FlatAppearance.BorderSize = 0;
+            this.buttonCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCancelar.Location = new System.Drawing.Point(138, 107);
+            this.buttonCancelar.Name = "buttonCancelar";
+            this.buttonCancelar.Size = new System.Drawing.Size(120, 45);
+            this.buttonCancelar.TabIndex = 20;
+            this.buttonCancelar.Text = "Cancelar";
+            this.buttonCancelar.UseVisualStyleBackColor = false;
+            // 
+            // buttonInserir
+            // 
+            this.buttonInserir.BackColor = System.Drawing.Color.White;
+            this.buttonInserir.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.buttonInserir.FlatAppearance.BorderSize = 0;
+            this.buttonInserir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonInserir.Location = new System.Drawing.Point(12, 107);
+            this.buttonInserir.Name = "buttonInserir";
+            this.buttonInserir.Size = new System.Drawing.Size(120, 45);
+            this.buttonInserir.TabIndex = 19;
+            this.buttonInserir.Text = "Inserir";
+            this.buttonInserir.UseVisualStyleBackColor = false;
+            this.buttonInserir.Click += new System.EventHandler(this.buttonInserir_Click);
+            // 
+            // listBoxTarefas
+            // 
+            this.listBoxTarefas.FormattingEnabled = true;
+            this.listBoxTarefas.ItemHeight = 15;
+            this.listBoxTarefas.Location = new System.Drawing.Point(264, 27);
+            this.listBoxTarefas.Name = "listBoxTarefas";
+            this.listBoxTarefas.Size = new System.Drawing.Size(524, 214);
+            this.listBoxTarefas.TabIndex = 25;
+            // 
             // TelaCadastrarTarefa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 261);
+            this.Controls.Add(this.listBoxTarefas);
+            this.Controls.Add(this.buttonCancelar);
+            this.Controls.Add(this.buttonInserir);
             this.Controls.Add(this.labelPrioridade);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.comboBoxPrioridades);
+            this.Controls.Add(this.textBoxTituloTarefa);
             this.Controls.Add(this.labelTituloTarefa);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -95,8 +137,11 @@
         #endregion
 
         private System.Windows.Forms.Label labelTituloTarefa;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox textBoxTituloTarefa;
+        private System.Windows.Forms.ComboBox comboBoxPrioridades;
         private System.Windows.Forms.Label labelPrioridade;
+        private System.Windows.Forms.Button buttonCancelar;
+        private System.Windows.Forms.Button buttonInserir;
+        private System.Windows.Forms.ListBox listBoxTarefas;
     }
 }
