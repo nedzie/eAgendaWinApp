@@ -32,7 +32,7 @@ namespace eAgenda.Dominio
         #region Overrides
         public override string ToString()
         {
-            return $"ID: {id} Nome: {Nome} Email: {Email} Telefone: {Telefone} Empresa: {Empresa} Cargo: {Cargo}";
+            return ($"ID: {id}".PadRight(20, ' ') + $" Nome: {Nome}".PadRight(20 + Nome.Length) + $"Email: {Email} Telefone: {Telefone} Empresa: {Empresa} Cargo: {Cargo}");
         }
 
         public override string Validar()

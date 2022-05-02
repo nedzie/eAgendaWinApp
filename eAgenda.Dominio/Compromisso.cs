@@ -36,7 +36,8 @@ namespace eAgenda.Dominio
                 sb.AppendLine("A data do compromisso é obrigatória");
             if (DataCompromisso < DateTime.Now)
                 sb.AppendLine("A data do compromisso não pode ser menor que a data atual!");
-
+            if (HoraInicio > HoraFim)
+                sb.AppendLine("A data inicial do compromisso não pode ser menor que a final");
 
             if (sb.Length == 0)
                 sb.Append("REGISTRO_VALIDO");

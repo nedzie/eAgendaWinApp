@@ -60,10 +60,5 @@ namespace eAgenda.WinApp.ModuloCompromisso
         {
             this.Close();
         }
-
-        private void TelaCadastrarCompromisso_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

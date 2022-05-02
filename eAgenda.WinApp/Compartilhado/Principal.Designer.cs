@@ -39,7 +39,7 @@
             this.buttonCompromisso.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.buttonCompromisso.FlatAppearance.BorderSize = 0;
             this.buttonCompromisso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCompromisso.Location = new System.Drawing.Point(91, 64);
+            this.buttonCompromisso.Location = new System.Drawing.Point(183, 93);
             this.buttonCompromisso.Name = "buttonCompromisso";
             this.buttonCompromisso.Size = new System.Drawing.Size(120, 45);
             this.buttonCompromisso.TabIndex = 0;
@@ -53,7 +53,7 @@
             this.buttonContato.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.buttonContato.FlatAppearance.BorderSize = 0;
             this.buttonContato.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonContato.Location = new System.Drawing.Point(233, 64);
+            this.buttonContato.Location = new System.Drawing.Point(324, 93);
             this.buttonContato.Name = "buttonContato";
             this.buttonContato.Size = new System.Drawing.Size(120, 45);
             this.buttonContato.TabIndex = 1;
@@ -67,7 +67,7 @@
             this.buttonTarefa.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.buttonTarefa.FlatAppearance.BorderSize = 0;
             this.buttonTarefa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonTarefa.Location = new System.Drawing.Point(373, 64);
+            this.buttonTarefa.Location = new System.Drawing.Point(465, 93);
             this.buttonTarefa.Name = "buttonTarefa";
             this.buttonTarefa.Size = new System.Drawing.Size(120, 45);
             this.buttonTarefa.TabIndex = 2;

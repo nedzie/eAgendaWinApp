@@ -1,6 +1,7 @@
 ﻿using eAgenda.Dominio;
 using eAgenda.WinApp.ModuloCompromisso;
 using eAgenda.WinApp.ModuloContato;
+using eAgenda.WinApp.ModuloTarefa;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,11 +20,14 @@ namespace eAgenda.WinApp
         TelaContato? telaContato;
         Repositorio<Compromisso> repositorioCompromisso;
         TelaCompromisso? telaCompromisso;
+        Repositorio<Tarefa> repositorioTarefa;
+        TelaTarefa? telaTarefa;
         public Principal()
         {
             InitializeComponent();
             repositorioContato = new Repositorio<Contato>();
             repositorioCompromisso = new Repositorio<Compromisso>();
+            repositorioTarefa = new Repositorio<Tarefa>();
         }
 
         private void buttonCompromisso_Click(object sender, EventArgs e)
@@ -40,7 +44,8 @@ namespace eAgenda.WinApp
 
         private void buttonTarefa_Click(object sender, EventArgs e)
         {
-
+            telaTarefa = new(repositorioTarefa);
+            telaTarefa.Show();
         }
     }
 }

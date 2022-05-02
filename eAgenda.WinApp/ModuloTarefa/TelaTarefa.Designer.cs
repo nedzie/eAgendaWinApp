@@ -1,6 +1,6 @@
-﻿namespace eAgenda.WinApp.ModuloCompromisso
+﻿namespace eAgenda.WinApp.ModuloTarefa
 {
-    partial class TelaCompromisso
+    partial class TelaTarefa
     {
         /// <summary>
         /// Required designer variable.
@@ -32,14 +32,14 @@
             this.buttonExcluir = new System.Windows.Forms.Button();
             this.buttonEditar = new System.Windows.Forms.Button();
             this.buttonInserir = new System.Windows.Forms.Button();
-            this.tabControlCompromissos = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.listBoxCompromissosPassados = new System.Windows.Forms.ListBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.listBoxCompromissosFuturos = new System.Windows.Forms.ListBox();
-            this.tabControlCompromissos.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPageTarefasPendentes = new System.Windows.Forms.TabPage();
+            this.tabPageTarefasConcluidas = new System.Windows.Forms.TabPage();
+            this.listBoxTarefasPendentes = new System.Windows.Forms.ListBox();
+            this.listBoxTarefasConcluidas = new System.Windows.Forms.ListBox();
+            this.tabControl1.SuspendLayout();
+            this.tabPageTarefasPendentes.SuspendLayout();
+            this.tabPageTarefasConcluidas.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonSair
@@ -50,10 +50,9 @@
             this.buttonSair.Location = new System.Drawing.Point(12, 165);
             this.buttonSair.Name = "buttonSair";
             this.buttonSair.Size = new System.Drawing.Size(120, 45);
-            this.buttonSair.TabIndex = 10;
+            this.buttonSair.TabIndex = 11;
             this.buttonSair.Text = "Sair";
             this.buttonSair.UseVisualStyleBackColor = false;
-            this.buttonSair.Click += new System.EventHandler(this.buttonSair_Click);
             // 
             // buttonExcluir
             // 
@@ -66,7 +65,6 @@
             this.buttonExcluir.TabIndex = 9;
             this.buttonExcluir.Text = "Excluir";
             this.buttonExcluir.UseVisualStyleBackColor = false;
-            this.buttonExcluir.Click += new System.EventHandler(this.buttonExcluir_Click);
             // 
             // buttonEditar
             // 
@@ -79,7 +77,6 @@
             this.buttonEditar.TabIndex = 8;
             this.buttonEditar.Text = "Editar";
             this.buttonEditar.UseVisualStyleBackColor = false;
-            this.buttonEditar.Click += new System.EventHandler(this.buttonEditar_Click);
             // 
             // buttonInserir
             // 
@@ -94,75 +91,76 @@
             this.buttonInserir.UseVisualStyleBackColor = false;
             this.buttonInserir.Click += new System.EventHandler(this.buttonInserir_Click);
             // 
-            // tabControlCompromissos
+            // tabControl1
             // 
-            this.tabControlCompromissos.Controls.Add(this.tabPage1);
-            this.tabControlCompromissos.Controls.Add(this.tabPage2);
-            this.tabControlCompromissos.Location = new System.Drawing.Point(138, 12);
-            this.tabControlCompromissos.Name = "tabControlCompromissos";
-            this.tabControlCompromissos.SelectedIndex = 0;
-            this.tabControlCompromissos.Size = new System.Drawing.Size(967, 300);
-            this.tabControlCompromissos.TabIndex = 13;
+            this.tabControl1.Controls.Add(this.tabPageTarefasPendentes);
+            this.tabControl1.Controls.Add(this.tabPageTarefasConcluidas);
+            this.tabControl1.Location = new System.Drawing.Point(138, 12);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(650, 300);
+            this.tabControl1.TabIndex = 14;
             // 
-            // tabPage1
+            // tabPageTarefasPendentes
             // 
-            this.tabPage1.Controls.Add(this.listBoxCompromissosPassados);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(959, 272);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Compromissos passados";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPageTarefasPendentes.Controls.Add(this.listBoxTarefasPendentes);
+            this.tabPageTarefasPendentes.Location = new System.Drawing.Point(4, 24);
+            this.tabPageTarefasPendentes.Name = "tabPageTarefasPendentes";
+            this.tabPageTarefasPendentes.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageTarefasPendentes.Size = new System.Drawing.Size(642, 272);
+            this.tabPageTarefasPendentes.TabIndex = 0;
+            this.tabPageTarefasPendentes.Text = "Tarefas Pendentes";
+            this.tabPageTarefasPendentes.UseVisualStyleBackColor = true;
             // 
-            // listBoxCompromissosPassados
+            // tabPageTarefasConcluidas
             // 
-            this.listBoxCompromissosPassados.FormattingEnabled = true;
-            this.listBoxCompromissosPassados.ItemHeight = 15;
-            this.listBoxCompromissosPassados.Location = new System.Drawing.Point(3, 6);
-            this.listBoxCompromissosPassados.Name = "listBoxCompromissosPassados";
-            this.listBoxCompromissosPassados.Size = new System.Drawing.Size(950, 259);
-            this.listBoxCompromissosPassados.TabIndex = 0;
+            this.tabPageTarefasConcluidas.Controls.Add(this.listBoxTarefasConcluidas);
+            this.tabPageTarefasConcluidas.Location = new System.Drawing.Point(4, 24);
+            this.tabPageTarefasConcluidas.Name = "tabPageTarefasConcluidas";
+            this.tabPageTarefasConcluidas.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageTarefasConcluidas.Size = new System.Drawing.Size(642, 272);
+            this.tabPageTarefasConcluidas.TabIndex = 1;
+            this.tabPageTarefasConcluidas.Text = "Tarefas Concluídas";
+            this.tabPageTarefasConcluidas.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // listBoxTarefasPendentes
             // 
-            this.tabPage2.Controls.Add(this.listBoxCompromissosFuturos);
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(959, 272);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Compromissos futuros";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.listBoxTarefasPendentes.FormattingEnabled = true;
+            this.listBoxTarefasPendentes.ItemHeight = 15;
+            this.listBoxTarefasPendentes.Location = new System.Drawing.Point(6, 6);
+            this.listBoxTarefasPendentes.Name = "listBoxTarefasPendentes";
+            this.listBoxTarefasPendentes.Size = new System.Drawing.Size(630, 259);
+            this.listBoxTarefasPendentes.TabIndex = 0;
             // 
-            // listBoxCompromissosFuturos
+            // listBoxTarefasConcluidas
             // 
-            this.listBoxCompromissosFuturos.FormattingEnabled = true;
-            this.listBoxCompromissosFuturos.ItemHeight = 15;
-            this.listBoxCompromissosFuturos.Location = new System.Drawing.Point(5, 7);
-            this.listBoxCompromissosFuturos.Name = "listBoxCompromissosFuturos";
-            this.listBoxCompromissosFuturos.Size = new System.Drawing.Size(948, 259);
-            this.listBoxCompromissosFuturos.TabIndex = 1;
+            this.listBoxTarefasConcluidas.FormattingEnabled = true;
+            this.listBoxTarefasConcluidas.ItemHeight = 15;
+            this.listBoxTarefasConcluidas.Location = new System.Drawing.Point(6, 6);
+            this.listBoxTarefasConcluidas.Name = "listBoxTarefasConcluidas";
+            this.listBoxTarefasConcluidas.Size = new System.Drawing.Size(630, 259);
+            this.listBoxTarefasConcluidas.TabIndex = 0;
             // 
-            // TelaCompromisso
+            // TelaTarefa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(1117, 323);
-            this.Controls.Add(this.tabControlCompromissos);
+            this.ClientSize = new System.Drawing.Size(800, 329);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.buttonSair);
             this.Controls.Add(this.buttonExcluir);
             this.Controls.Add(this.buttonEditar);
             this.Controls.Add(this.buttonInserir);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "TelaCompromisso";
+            this.Name = "TelaTarefa";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Tela Compromisso";
-            this.tabControlCompromissos.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
+            this.Text = "TelaTarefa";
+            this.tabControl1.ResumeLayout(false);
+            this.tabPageTarefasPendentes.ResumeLayout(false);
+            this.tabPageTarefasConcluidas.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -172,10 +170,10 @@
         private System.Windows.Forms.Button buttonExcluir;
         private System.Windows.Forms.Button buttonEditar;
         private System.Windows.Forms.Button buttonInserir;
-        private System.Windows.Forms.TabControl tabControlCompromissos;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.ListBox listBoxCompromissosPassados;
-        private System.Windows.Forms.ListBox listBoxCompromissosFuturos;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPageTarefasPendentes;
+        private System.Windows.Forms.ListBox listBoxTarefasPendentes;
+        private System.Windows.Forms.TabPage tabPageTarefasConcluidas;
+        private System.Windows.Forms.ListBox listBoxTarefasConcluidas;
     }
 }

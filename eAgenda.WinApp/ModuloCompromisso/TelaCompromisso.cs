@@ -130,5 +130,10 @@ namespace eAgenda.WinApp.ModuloCompromisso
                 listBoxCompromissosFuturos.Items.Add(c);
             }
         }
+
+        private void buttonSair_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

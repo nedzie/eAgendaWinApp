@@ -169,7 +169,7 @@
             this.listBoxContatos.ItemHeight = 15;
             this.listBoxContatos.Location = new System.Drawing.Point(274, 72);
             this.listBoxContatos.Name = "listBoxContatos";
-            this.listBoxContatos.Size = new System.Drawing.Size(381, 214);
+            this.listBoxContatos.Size = new System.Drawing.Size(690, 214);
             this.listBoxContatos.TabIndex = 24;
             // 
             // labelContatoAtual
@@ -196,7 +196,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(667, 306);
+            this.ClientSize = new System.Drawing.Size(976, 306);
             this.Controls.Add(this.labelContato);
             this.Controls.Add(this.labelContatoAtual);
             this.Controls.Add(this.listBoxContatos);
@@ -216,7 +216,6 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ajustar Compromisso";
-            this.Load += new System.EventHandler(this.TelaCadastrarCompromisso_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
