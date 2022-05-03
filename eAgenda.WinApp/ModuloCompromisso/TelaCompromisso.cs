@@ -15,8 +15,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
             InitializeComponent();
             _repositorioCompromisso = repositorio;
             _repositorioContato = repositorioContato;
-            CarregarCompromissosPassados();
-            CarregarCompromissosFuturos();
+            CarregarCompromissosNaTela();
         }
 
         private void buttonInserir_Click(object sender, EventArgs e)
@@ -26,12 +25,16 @@ namespace eAgenda.WinApp.ModuloCompromisso
             if (res == DialogResult.OK)
             {
                 Compromisso temp = telaCadCompromisso.Compromisso;
+
                 bool podeSeguir = ValidarHorarios(temp);
+                if (!podeSeguir)
+                    return;
+
                 string status = _repositorioCompromisso.Inserir(telaCadCompromisso.Compromisso);
 
                 if (status == "REGISTRO_VALIDO")
                 {
-                    if(telaCadCompromisso.Compromisso.Contato != null)
+                    if (telaCadCompromisso.Compromisso.Contato != null)
                         telaCadCompromisso.Compromisso.Contato.EstaEmCompromisso = true;
 
                     MessageBox.Show("Compromisso inserido com sucesso!", "Contato", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -39,8 +42,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
                 else
                     MessageBox.Show($"{status}\nTente novamente", "Compromisso", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                CarregarCompromissosPassados();
-                CarregarCompromissosFuturos();
+                CarregarCompromissosNaTela();
             }
         }
 
@@ -64,14 +66,19 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
             if (res == DialogResult.OK)
             {
+                Compromisso temp = telaCadCompromisso.Compromisso;
+
+                bool podeSeguir = ValidarHorarios(temp);
+                if (!podeSeguir)
+                    return;
+
                 string status = _repositorioCompromisso.Editar(telaCadCompromisso.Compromisso, compromissoSelecionado);
                 if (status == "REGISTRO_VALIDO")
                     MessageBox.Show("Compromisso editado com sucesso!", "Contato", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 else
                     MessageBox.Show($"{status}\nTente novamente", "Compromisso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                CarregarCompromissosPassados();
-                CarregarCompromissosFuturos();
+                CarregarCompromissosNaTela();
             }
         }
 
@@ -89,8 +96,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
             if (resultado == DialogResult.OK)
             {
                 _repositorioCompromisso.Excluir(compromissoSelecionado);
-                CarregarCompromissosPassados();
-                CarregarCompromissosFuturos();
+                CarregarCompromissosNaTela();
             }
         }
 
@@ -120,9 +126,9 @@ namespace eAgenda.WinApp.ModuloCompromisso
             {
                 if (c.DataCompromisso == temp.DataCompromisso)
                 {
-                    if (temp.HoraInicio >= c.HoraInicio ||
+                    if (temp.HoraInicio >= c.HoraInicio &&
                         temp.HoraInicio <= c.HoraFim ||
-                        temp.HoraFim <= c.HoraFim ||
+                        temp.HoraFim <= c.HoraFim &&
                         temp.HoraFim >= c.HoraInicio)
                     {
                         MessageBox.Show("O horário deste compromisso conflita com a de outro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -133,6 +139,11 @@ namespace eAgenda.WinApp.ModuloCompromisso
             return true;
         }
 
+        public void CarregarCompromissosNaTela()
+        {
+            CarregarCompromissosFuturos();
+            CarregarCompromissosPassados();
+        }
         public void CarregarCompromissosPassados()
         {
             List<Compromisso> compromissosPassados = _repositorioCompromisso.Filtrar(x => x.DataCompromisso <= DateTime.Now);
@@ -156,6 +167,45 @@ namespace eAgenda.WinApp.ModuloCompromisso
         private void buttonSair_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void buttonFiltrar_Click(object sender, EventArgs e)
+        {
+            if (maskedTextBoxInicio.Text != "  /  /" && maskedTextBoxFim.Text != "  /  /")
+            {
+                DateTime inicio = DateTime.Parse(maskedTextBoxInicio.Text);
+                DateTime fim = DateTime.Parse(maskedTextBoxFim.Text);
+
+                if(fim < inicio && listBoxCompromissosFuturos.Items.Count > 0)
+                {
+                    MessageBox.Show("O início não pode ser menor que o fim!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                List<Compromisso> compromissosNoPeriodo = _repositorioCompromisso.FiltrarDuplamente(x => x.DataCompromisso >= inicio, x => x.DataCompromisso <= fim);
+                if(compromissosNoPeriodo.Count == 0)
+                {
+                    MessageBox.Show("Sem compromissos neste período!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                listBoxCompromissosFuturos.Items.Clear();
+                foreach (Compromisso c in compromissosNoPeriodo)
+                {
+                    listBoxCompromissosFuturos.Items.Add(c);
+                }
+            }
+            else if (maskedTextBoxInicio.Text == "  /  /" || maskedTextBoxFim.Text == "  /  /" && listBoxCompromissosFuturos.Items.Count > 0)
+                MessageBox.Show("Preencha ambos os campos para filtrar!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if(listBoxCompromissosFuturos.Items.Count == 0)
+            {
+                MessageBox.Show("Sem compromissos para filtrar!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonVisualizarNormal_Click(object sender, EventArgs e)
+        {
+            CarregarCompromissosNaTela();
         }
     }
 }
