@@ -47,5 +47,10 @@ namespace eAgenda.WinApp
             telaTarefa = new(repositorioTarefa);
             telaTarefa.Show();
         }
+
+        private void buttonSair_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
