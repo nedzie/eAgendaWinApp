@@ -21,6 +21,7 @@ namespace eAgenda.Dominio
         public List<Item> Itens
         {
             get { return itens; }
+            set { itens = value; }
         }
  
         public PrioridadeEnum Prioridade
@@ -59,24 +60,56 @@ namespace eAgenda.Dominio
         }
         public override string ToString()
         {
-            decimal percentual = CalcularPercentualConcluisao();
+            decimal percentual = CalcularPercentualConclusao();
 
             if(DataConclusao.HasValue)
-                return $"ID: {id} Título: {Titulo} Prioridade: {Prioridade} Data de criação: {DataCriacao} Percentual: {percentual} Conclusão: {DataConclusao}";
+                return $"ID: {id} Título: {Titulo} Prioridade: {Prioridade} Data de criação: {DataCriacao} Percentual: {percentual}% Conclusão: {DataConclusao}";
 
-            return $"ID: {id} Título: {Titulo} Prioridade: {Prioridade} Data de criação: {DataCriacao} Percentual: {percentual}";
+            return $"ID: {id} Título: {Titulo} Prioridade: {Prioridade} Data de criação: {DataCriacao} Percentual: {percentual}%";
         }
 
-        private decimal CalcularPercentualConcluisao()
+        private decimal CalcularPercentualConclusao()
         {
             if (itens.Count == 0)
                 return 0;
 
             int qtdConcluidas = Itens.Count(x => x.Concluido);
 
-            var percentualConcluido = (qtdConcluidas / (decimal)Itens.Count()) * 100;
+            var percentualConcluido = (qtdConcluidas / (decimal)Itens.Count) * 100;
 
             return Math.Round(percentualConcluido, 2);
+        }
+
+        public void AtualizarItens(List<Item> itensConcluidos, List<Item> itensPendentes)
+        {
+            foreach (var item in itensConcluidos)
+            {
+                ConcluirItem(item);
+            }
+
+            foreach (var item in itensPendentes)
+            {
+                MarcarPendente(item);
+            }
+        }
+
+        public void ConcluirItem(Item item)
+        {
+            Item itemTarefa = itens.Find(x => x.Equals(item));
+
+            itemTarefa?.Concluir();
+
+            var percentual = CalcularPercentualConclusao();
+
+            if (percentual == 100)
+                DataConclusao = DateTime.Now;
+        }
+
+        public void MarcarPendente(Item item)
+        {
+            Item itemTarefa = itens.Find(x => x.Equals(item));
+
+            itemTarefa?.MarcarPendente();
         }
     }
 }

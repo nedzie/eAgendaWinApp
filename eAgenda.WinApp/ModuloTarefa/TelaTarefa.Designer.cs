@@ -81,6 +81,7 @@
             this.buttonEditar.TabIndex = 1;
             this.buttonEditar.Text = "Editar";
             this.buttonEditar.UseVisualStyleBackColor = false;
+            this.buttonEditar.Click += new System.EventHandler(this.buttonEditar_Click);
             // 
             // buttonInserir
             // 
@@ -169,6 +170,7 @@
             this.buttonConcluirItens.TabIndex = 15;
             this.buttonConcluirItens.Text = "Concluir itens";
             this.buttonConcluirItens.UseVisualStyleBackColor = false;
+            this.buttonConcluirItens.Click += new System.EventHandler(this.buttonConcluirItens_Click);
             // 
             // TelaTarefa
             // 

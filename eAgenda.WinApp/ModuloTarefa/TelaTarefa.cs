@@ -97,7 +97,6 @@ namespace eAgenda.WinApp.ModuloTarefa
             }
         }
 
-
         public bool VerificarContinuidade(Tarefa tarefaSelecionada, string tipo)
         {
             bool temAlgo = _repositorioTarefa.ExisteRegistro();
@@ -113,6 +112,60 @@ namespace eAgenda.WinApp.ModuloTarefa
             }
             else
                 return true;
+        }
+
+        private void buttonConcluirItens_Click(object sender, EventArgs e)
+        {
+            Tarefa tarefaSelecionada = (Tarefa)listBoxTarefasPendentes.SelectedItem;
+            TelaConcluirItens telaConcItens = new(tarefaSelecionada);
+            DialogResult res = telaConcItens.ShowDialog();
+
+            if(res == DialogResult.OK)
+            {
+                List<Item> itensConcluidos = telaConcItens.ItensConcluidos;
+
+                List<Item> itensPendentes = telaConcItens.ItensPendentes;
+
+                tarefaSelecionada.AtualizarItens(itensConcluidos, itensPendentes);
+            }
+
+            CarregarTarefasNaTela();
+        }
+
+        private void buttonEditar_Click(object sender, EventArgs e)
+        {
+            Tarefa tarefaSelecionada = (Tarefa)listBoxTarefasPendentes.SelectedItem;
+
+            Tarefa novaTarefa = new();
+
+            novaTarefa.id = tarefaSelecionada.id;
+            novaTarefa.Titulo = tarefaSelecionada.Titulo;
+            novaTarefa.DataCriacao = tarefaSelecionada.DataCriacao;
+            novaTarefa.Itens = tarefaSelecionada.Itens;
+            novaTarefa.Concluida = tarefaSelecionada.Concluida;
+
+            bool temAlgo = VerificarContinuidade(tarefaSelecionada, "Editar");
+            if (!temAlgo)
+                return;
+
+            TelaCadastrarTarefa telaCadTarefa = new(novaTarefa); // Povoa com as mesmas informações sem editar as antigas
+
+            DialogResult res = telaCadTarefa.ShowDialog();
+
+            if (res == DialogResult.OK)
+            {
+                string status = _repositorioTarefa.Editar(novaTarefa, tarefaSelecionada);
+                if (status == "REGISTRO_VALIDO")
+                {
+                    MessageBox.Show("Tarefa editada com sucesso!", "Tarefa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    CarregarTarefasNaTela();
+                }
+                else
+                {
+                    MessageBox.Show($"{status}\nTente novamente", "Tarefa", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    CarregarTarefasNaTela();
+                }
+            }
         }
     }
 }
