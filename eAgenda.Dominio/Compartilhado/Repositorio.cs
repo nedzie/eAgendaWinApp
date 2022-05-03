@@ -15,6 +15,7 @@ namespace eAgenda.Dominio
         {
             _serializador = ser;
             registros = ser.Carregar();
+            contadorID = registros.Count;
         }
         #endregion
 
@@ -63,7 +64,7 @@ namespace eAgenda.Dominio
             return registrosFiltrados;
         }
 
-        public List<T> FiltrarDuplamente(Predicate<T> condicao, Predicate<T> condicao2)
+        public List<T> Filtrar(Predicate<T> condicao, Predicate<T> condicao2)
         {
             List<T> registrosFiltrados = new List<T>();
 

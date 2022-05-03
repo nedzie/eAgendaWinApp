@@ -127,7 +127,7 @@
             this.listBoxCompromissosPassados.ItemHeight = 15;
             this.listBoxCompromissosPassados.Location = new System.Drawing.Point(3, 6);
             this.listBoxCompromissosPassados.Name = "listBoxCompromissosPassados";
-            this.listBoxCompromissosPassados.Size = new System.Drawing.Size(950, 259);
+            this.listBoxCompromissosPassados.Size = new System.Drawing.Size(950, 349);
             this.listBoxCompromissosPassados.TabIndex = 0;
             // 
             // tabPage2

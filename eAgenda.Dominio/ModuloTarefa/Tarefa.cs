@@ -8,15 +8,19 @@ namespace eAgenda.Dominio
 {
     public class Tarefa : EntidadeBase
     {
+        #region Atributos
         private PrioridadeEnum _prioridade;
-        public string Titulo { get; set; }
 
         private List<Item> itens = new List<Item>();
+        #endregion
+
+        #region Propriedades
+        public string Titulo { get; set; }
 
         public DateTime DataCriacao { get; set; }
         public DateTime? DataConclusao { get; set; }
 
-        public bool Concluida;
+        public bool Concluida { get; set; }
 
         public List<Item> Itens
         {
@@ -29,22 +33,17 @@ namespace eAgenda.Dominio
             get { return _prioridade; }
             set { _prioridade = value; }
         }
+        #endregion
 
+        #region Construtor
         public Tarefa()
         {
             DataCriacao = DateTime.Now;
             DataConclusao = null;
         }
+        #endregion
 
-        public void AdicionarItens(List<Item> itens)
-        {
-            foreach (Item item in itens)
-            {
-                if (!Itens.Exists(x => x.Equals(item)))
-                    this.itens.Add(item);
-            }
-        }
-
+        #region Overrides
         public override string Validar()
         {
             StringBuilder sb = new();
@@ -66,6 +65,18 @@ namespace eAgenda.Dominio
                 return $"ID: {id} Título: {Titulo} Prioridade: {Prioridade} Data de criação: {DataCriacao} Percentual: {percentual}% Conclusão: {DataConclusao}";
 
             return $"ID: {id} Título: {Titulo} Prioridade: {Prioridade} Data de criação: {DataCriacao} Percentual: {percentual}%";
+        }
+
+        #endregion
+
+        #region Métodos
+        public void AdicionarItens(List<Item> itens)
+        {
+            foreach (Item item in itens)
+            {
+                if (!Itens.Exists(x => x.Equals(item)))
+                    this.itens.Add(item);
+            }
         }
 
         private decimal CalcularPercentualConclusao()
@@ -93,7 +104,7 @@ namespace eAgenda.Dominio
             }
         }
 
-        public void ConcluirItem(Item item)
+        private void ConcluirItem(Item item)
         {
             Item itemTarefa = itens.Find(x => x.Equals(item));
 
@@ -108,10 +119,12 @@ namespace eAgenda.Dominio
             }
         }
 
-        public void MarcarPendente(Item item)
+        private void MarcarPendente(Item item)
         {
             Item itemTarefa = itens.Find(x => x.Equals(item));
             itemTarefa?.MarcarPendente();
         }
+
+        #endregion
     }
 }

@@ -25,7 +25,7 @@ namespace eAgenda.WinApp.ModuloContato
 
             if (res == DialogResult.OK)
             {
-                bool podeSeguir = VerificarDuplicidade(telaCadContato);
+                bool podeSeguir = VerificarDuplicidade(telaCadContato.Contato);
                 if (!podeSeguir)
                 {
                     return;
@@ -66,17 +66,19 @@ namespace eAgenda.WinApp.ModuloContato
             novoContato.Cargo = contatoSelecionado.Cargo;
             novoContato.EstaEmCompromisso = contatoSelecionado.EstaEmCompromisso;
 
-
             TelaCadastrarContato telaCadContato = new(novoContato); // Povoa com as mesmas informações sem editar as antigas
 
             DialogResult res = telaCadContato.ShowDialog();
 
             if (res == DialogResult.OK)
             {
-                bool podeSeguir = VerificarDuplicidade(telaCadContato);
-                if (!podeSeguir)
+                if(telaCadContato.Contato.id == contatoSelecionado.id == false)
                 {
-                    return;
+                    bool podeSeguir = VerificarDuplicidade(telaCadContato.Contato);
+                    if (!podeSeguir)
+                    {
+                        return;
+                    }
                 }
 
                 string status = _repositorioContato.Editar(novoContato, contatoSelecionado);
@@ -97,12 +99,12 @@ namespace eAgenda.WinApp.ModuloContato
         {
             Contato contatoSelecionado = (Contato)listBoxContato.SelectedItem;
 
-            if(listBoxContato.Items.Count == 0)
+            if (listBoxContato.Items.Count == 0)
             {
                 MessageBox.Show("Nenhum contato para excluir", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if(contatoSelecionado == null)
+            if (contatoSelecionado == null)
             {
                 MessageBox.Show("É necessário selecionar um contato para excluir", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -127,21 +129,21 @@ namespace eAgenda.WinApp.ModuloContato
                 CarregarContatosNaTela();
             }
         }
-        private bool VerificarDuplicidade(TelaCadastrarContato telaCadContato)
+        private bool VerificarDuplicidade(Contato contato)
         {
             List<Contato> todos = _repositorioContato.SelecionarTodos();
 
             foreach (Contato contatoJaRegistrado in todos)
             {
                 StringBuilder sb = new();
-                
-                if (contatoJaRegistrado.Nome == telaCadContato.Contato.Nome)
+
+                if (contatoJaRegistrado.Nome == contato.Nome)
                     sb.AppendLine("O nome do contato já existe");
 
-                if (contatoJaRegistrado.Email == telaCadContato.Contato.Email)
+                if (contatoJaRegistrado.Email == contato.Email)
                     sb.AppendLine("O email do contato já existe");
 
-                if (contatoJaRegistrado.Telefone == telaCadContato.Contato.Telefone)
+                if (contatoJaRegistrado.Telefone == contato.Telefone)
                     sb.AppendLine("O telefone já existe");
 
                 if (sb.Length > 0)

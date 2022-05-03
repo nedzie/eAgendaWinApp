@@ -99,6 +99,11 @@ namespace eAgenda.WinApp.ModuloTarefa
                 MessageBox.Show("Você só pode adicionar itens em tarefas pendentes!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if(tarefaSelecionada == null)
+            {
+                MessageBox.Show("Selecione uma tarefa válida (pendente) para adicionar itens!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             TelaCadastrarItens telaItens = new(tarefaSelecionada);
             DialogResult res = telaItens.ShowDialog();
@@ -163,6 +168,13 @@ namespace eAgenda.WinApp.ModuloTarefa
                 MessageBox.Show("Você só pode concluir itens em tarefas pendentes!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            if (tarefaSelecionada == null)
+            {
+                MessageBox.Show("Selecione uma tarefa válida (pendente) para concluir itens!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             TelaConcluirItens telaConcItens = new(tarefaSelecionada);
             DialogResult res = telaConcItens.ShowDialog();
 
@@ -181,6 +193,19 @@ namespace eAgenda.WinApp.ModuloTarefa
         private void buttonEditar_Click(object sender, EventArgs e)
         {
             Tarefa tarefaSelecionada = (Tarefa)listBoxTarefasPendentes.SelectedItem;
+            Tarefa invalida = (Tarefa)listBoxTarefasConcluidas.SelectedItem;
+
+            if(invalida != null && invalida.Concluida == true)
+            {
+                    MessageBox.Show("Não é possível editar uma tarefa concluída!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+            }
+
+            if(tarefaSelecionada == null)
+            {
+                MessageBox.Show("Selecione uma tarefa para editar!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             Tarefa novaTarefa = new();
 

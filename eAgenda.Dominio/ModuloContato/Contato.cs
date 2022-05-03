@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -30,8 +29,18 @@ namespace eAgenda.Dominio
         #endregion
 
         #region Overrides
+
+        //public override bool Equals(object obj)
+        //{
+        //    Contato contato = obj as Contato;
+
+        //    var eIgual = (id == contato.id);
+            
+        //    return eIgual;
+        //}
+
         public override string ToString()
-        {
+        {            
             return $"ID: {id} Nome: {Nome} Email: {Email} Telefone: {Telefone} Empresa: {Empresa} Cargo: {Cargo}";
         }
 

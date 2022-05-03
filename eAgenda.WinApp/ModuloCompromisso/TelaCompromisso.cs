@@ -182,7 +182,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
                     return;
                 }
 
-                List<Compromisso> compromissosNoPeriodo = _repositorioCompromisso.FiltrarDuplamente(x => x.DataCompromisso >= inicio, x => x.DataCompromisso <= fim);
+                List<Compromisso> compromissosNoPeriodo = _repositorioCompromisso.Filtrar(x => x.DataCompromisso >= inicio, x => x.DataCompromisso <= fim);
                 if(compromissosNoPeriodo.Count == 0)
                 {
                     MessageBox.Show("Sem compromissos neste período!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
