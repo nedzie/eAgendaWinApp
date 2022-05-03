@@ -134,7 +134,7 @@ namespace eAgenda.WinApp.ModuloContato
             foreach (Contato contatoJaRegistrado in todos)
             {
                 StringBuilder sb = new();
-
+                
                 if (contatoJaRegistrado.Nome == telaCadContato.Contato.Nome)
                     sb.AppendLine("O nome do contato já existe");
 

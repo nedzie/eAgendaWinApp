@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 
 namespace eAgenda.Dominio
 {
-    public class Compromisso : EntidadeBase, IEnumerable<Compromisso>
+    public class Compromisso : EntidadeBase
     {
         public Contato _contato = new();
         public string Assunto { get; set; }
@@ -48,15 +46,6 @@ namespace eAgenda.Dominio
                 sb.Append("REGISTRO_VALIDO");
 
             return sb.ToString();
-        }
-        public IEnumerator<Compromisso> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
         }
     }
 }

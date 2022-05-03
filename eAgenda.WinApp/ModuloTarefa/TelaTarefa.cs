@@ -1,4 +1,5 @@
 ﻿using eAgenda.Dominio;
+using eAgenda.Dominio.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,10 +11,12 @@ namespace eAgenda.WinApp.ModuloTarefa
     public partial class TelaTarefa : Form
     {
         Repositorio<Tarefa> _repositorioTarefa;
-        public TelaTarefa(Repositorio<Tarefa> repositorioTarefa)
+        JsonSerializador<Tarefa> _jsonTarefa;
+        public TelaTarefa(Repositorio<Tarefa> repositorioTarefa, JsonSerializador<Tarefa> jTarefa)
         {
             InitializeComponent();
             _repositorioTarefa = repositorioTarefa;
+            _jsonTarefa = jTarefa;
             CarregarTarefasNaTela();
         }
 
@@ -90,11 +93,19 @@ namespace eAgenda.WinApp.ModuloTarefa
         private void buttonAdicionarItens_Click(object sender, EventArgs e)
         {
             Tarefa tarefaSelecionada = (Tarefa)listBoxTarefasPendentes.SelectedItem;
+            Tarefa temp = (Tarefa)listBoxTarefasConcluidas.SelectedItem;
+            if(temp != null)
+            {
+                MessageBox.Show("Você só pode adicionar itens em tarefas pendentes!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             TelaCadastrarItens telaItens = new(tarefaSelecionada);
             DialogResult res = telaItens.ShowDialog();
             if (res == DialogResult.OK)
             {
                 tarefaSelecionada.AdicionarItens(telaItens.ItensAdicionados);
+                _jsonTarefa.Salvar(_repositorioTarefa.SelecionarTodos());
                 CarregarTarefasNaTela();
             }
         }
@@ -146,6 +157,12 @@ namespace eAgenda.WinApp.ModuloTarefa
         private void buttonConcluirItens_Click(object sender, EventArgs e)
         {
             Tarefa tarefaSelecionada = (Tarefa)listBoxTarefasPendentes.SelectedItem;
+            Tarefa temp = (Tarefa)listBoxTarefasConcluidas.SelectedItem;
+            if (temp != null)
+            {
+                MessageBox.Show("Você só pode concluir itens em tarefas pendentes!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             TelaConcluirItens telaConcItens = new(tarefaSelecionada);
             DialogResult res = telaConcItens.ShowDialog();
 
@@ -156,8 +173,8 @@ namespace eAgenda.WinApp.ModuloTarefa
                 List<Item> itensPendentes = telaConcItens.ItensPendentes;
 
                 tarefaSelecionada.AtualizarItens(itensConcluidos, itensPendentes);
+                _jsonTarefa.Salvar(_repositorioTarefa.SelecionarTodos());
             }
-
             CarregarTarefasNaTela();
         }
 

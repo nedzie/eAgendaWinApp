@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace eAgenda.Dominio
 {
-    public class Contato : EntidadeBase, IEnumerable
+    public class Contato : EntidadeBase
     {
         #region Atributos
         private string nome;
@@ -58,11 +58,6 @@ namespace eAgenda.Dominio
                 sb.Append("REGISTRO_VALIDO");
 
             return sb.ToString();
-        }
-
-        public IEnumerator GetEnumerator()
-        {
-            throw new System.NotImplementedException();
         }
         #endregion
     }

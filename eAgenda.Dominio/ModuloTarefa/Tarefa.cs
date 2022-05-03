@@ -6,7 +6,7 @@ using System.Text;
 
 namespace eAgenda.Dominio
 {
-    public class Tarefa : EntidadeBase, IEnumerable<Tarefa>
+    public class Tarefa : EntidadeBase
     {
         private PrioridadeEnum _prioridade;
         public string Titulo { get; set; }
@@ -111,18 +111,7 @@ namespace eAgenda.Dominio
         public void MarcarPendente(Item item)
         {
             Item itemTarefa = itens.Find(x => x.Equals(item));
-
             itemTarefa?.MarcarPendente();
-        }
-
-        public IEnumerator<Tarefa> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
         }
     }
 }

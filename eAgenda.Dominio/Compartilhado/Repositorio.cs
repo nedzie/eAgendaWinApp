@@ -1,18 +1,20 @@
-﻿using System;
+﻿using eAgenda.Dominio.Compartilhado;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace eAgenda.Dominio
 {
     public class Repositorio<T> where T : EntidadeBase
     {
+        private readonly ISerializador<T> _serializador; // Para serializar [gravar] as informações em .json
         protected readonly List<T> registros;
         protected int contadorID;
 
         #region Construtor
-        public Repositorio()
+        public Repositorio(ISerializador<T> ser)
         {
-            registros = new List<T>();
+            _serializador = ser;
+            registros = ser.Carregar();
         }
         #endregion
 
@@ -24,6 +26,7 @@ namespace eAgenda.Dominio
 
             registro.id = ++contadorID;
             registros.Add(registro);
+            _serializador.Salvar(registros);
             return "REGISTRO_VALIDO";
         }
 
@@ -35,10 +38,12 @@ namespace eAgenda.Dominio
 
             int indice = registros.FindIndex(x => x.id == antigoRegistro.id);
             registros[indice] = novoRegistro;
+            _serializador.Salvar(registros);
             return "REGISTRO_VALIDO";
         }
         public bool Excluir(T registro)
         {
+            _serializador.Salvar(registros);
             return registros.Remove(registro);
         }
 

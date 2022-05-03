@@ -118,18 +118,18 @@ namespace eAgenda.WinApp.ModuloCompromisso
                 return true;
         }
 
-        public bool ValidarHorarios(Compromisso temp)
+        public bool ValidarHorarios(Compromisso novoCompromisso)
         {
             List<Compromisso> todos = _repositorioCompromisso.SelecionarTodos();
 
-            foreach (Compromisso c in todos)
+            foreach (Compromisso compromissoJaRegistrado in todos)
             {
-                if (c.DataCompromisso == temp.DataCompromisso)
+                if (compromissoJaRegistrado.DataCompromisso == novoCompromisso.DataCompromisso)
                 {
-                    if (temp.HoraInicio >= c.HoraInicio &&
-                        temp.HoraInicio <= c.HoraFim ||
-                        temp.HoraFim <= c.HoraFim &&
-                        temp.HoraFim >= c.HoraInicio)
+                    if (novoCompromisso.HoraInicio >= compromissoJaRegistrado.HoraInicio &&
+                        novoCompromisso.HoraInicio <= compromissoJaRegistrado.HoraFim ||
+                        novoCompromisso.HoraFim <= compromissoJaRegistrado.HoraFim &&
+                        novoCompromisso.HoraFim >= compromissoJaRegistrado.HoraInicio)
                     {
                         MessageBox.Show("O horário deste compromisso conflita com a de outro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return false;

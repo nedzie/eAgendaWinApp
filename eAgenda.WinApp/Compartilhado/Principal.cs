@@ -1,4 +1,5 @@
 ﻿using eAgenda.Dominio;
+using eAgenda.Dominio.Compartilhado;
 using eAgenda.WinApp.ModuloCompromisso;
 using eAgenda.WinApp.ModuloContato;
 using eAgenda.WinApp.ModuloTarefa;
@@ -22,12 +23,21 @@ namespace eAgenda.WinApp
         TelaCompromisso? telaCompromisso;
         Repositorio<Tarefa> repositorioTarefa;
         TelaTarefa? telaTarefa;
+
+        //////////////////////////////////////////////////////////////////////////////
+        
+        private readonly JsonSerializador<Tarefa> _jsonTarefa;
+        private readonly JsonSerializador<Contato> _jsonContato;
+        private readonly JsonSerializador<Compromisso> _jsonCompromisso;
         public Principal()
         {
+            _jsonContato = new(@"C:\Temp\Contatos");
+            _jsonCompromisso = new(@"C:\Temp\Compromissos");
+            _jsonTarefa = new(@"C:\Temp\Tarefas");
+            repositorioContato = new Repositorio<Contato>(_jsonContato);
+            repositorioCompromisso = new Repositorio<Compromisso>(_jsonCompromisso);
+            repositorioTarefa = new Repositorio<Tarefa>(_jsonTarefa);
             InitializeComponent();
-            repositorioContato = new Repositorio<Contato>();
-            repositorioCompromisso = new Repositorio<Compromisso>();
-            repositorioTarefa = new Repositorio<Tarefa>();
         }
 
         private void buttonCompromisso_Click(object sender, EventArgs e)
@@ -44,7 +54,7 @@ namespace eAgenda.WinApp
 
         private void buttonTarefa_Click(object sender, EventArgs e)
         {
-            telaTarefa = new(repositorioTarefa);
+            telaTarefa = new(repositorioTarefa, _jsonTarefa);
             telaTarefa.Show();
         }
 
