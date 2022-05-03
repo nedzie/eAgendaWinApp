@@ -42,7 +42,6 @@ namespace eAgenda.WinApp.ModuloContato
             }
         }
 
-
         private void buttonEditar_Click(object sender, EventArgs e)
         {
             Contato contatoSelecionado = (Contato)listBoxContato.SelectedItem;
@@ -98,6 +97,17 @@ namespace eAgenda.WinApp.ModuloContato
         {
             Contato contatoSelecionado = (Contato)listBoxContato.SelectedItem;
 
+            if(listBoxContato.Items.Count == 0)
+            {
+                MessageBox.Show("Nenhum contato para excluir", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if(contatoSelecionado == null)
+            {
+                MessageBox.Show("É necessário selecionar um contato para excluir", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (contatoSelecionado.EstaEmCompromisso)
             {
                 MessageBox.Show("O contato está presente em um compromisso, não é possível excluir", "Excluir", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -119,7 +129,6 @@ namespace eAgenda.WinApp.ModuloContato
         }
         private bool VerificarDuplicidade(TelaCadastrarContato telaCadContato)
         {
-
             List<Contato> todos = _repositorioContato.SelecionarTodos();
 
             foreach (Contato contatoJaRegistrado in todos)
@@ -140,13 +149,10 @@ namespace eAgenda.WinApp.ModuloContato
                     MessageBox.Show($"{sb}\nTente novamente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
-
-
-
             }
-
             return true;
         }
+
         private bool VerificarContinuidade(Contato contatoSelecionado, string tipo)
         {
             bool temAlgo = _repositorioContato.ExisteRegistro();
@@ -166,10 +172,20 @@ namespace eAgenda.WinApp.ModuloContato
 
         private void buttonVisualizarNormal_Click(object sender, EventArgs e)
         {
+            if (listBoxContato.Items.Count == 0)
+            {
+                MessageBox.Show("Sem contatos cadastrados", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             CarregarContatosNaTela();
         }
         private void buttonVisualizarCargo_Click(object sender, EventArgs e)
         {
+            if (listBoxContato.Items.Count == 0)
+            {
+                MessageBox.Show("Sem contatos cadastrados", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             CarregarContatosPorGrupo();
         }
 

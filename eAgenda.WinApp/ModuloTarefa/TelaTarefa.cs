@@ -1,12 +1,8 @@
 ﻿using eAgenda.Dominio;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloTarefa
@@ -26,16 +22,37 @@ namespace eAgenda.WinApp.ModuloTarefa
             TelaCadastrarTarefa telaCadTarefa = new(new Tarefa());
             DialogResult res = telaCadTarefa.ShowDialog();
 
-            if(res == DialogResult.OK)
+            if (res == DialogResult.OK)
             {
+                Tarefa temp = telaCadTarefa.Tarefa;
+
+                bool podeSeguir = VerificarDuplicidade(temp);
+                if (!podeSeguir)
+                    return;
+
                 string status = _repositorioTarefa.Inserir(telaCadTarefa.Tarefa);
-                if(status == "REGISTRO_VALIDO")
+                if (status == "REGISTRO_VALIDO")
                     MessageBox.Show("Tarefa inserida com sucesso!", "Tarefa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 else
                     MessageBox.Show($"{status}\nTente novamente", "Tarefa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                 CarregarTarefasNaTela();
             }
+        }
+
+        private bool VerificarDuplicidade(Tarefa temp)
+        {
+            List<Tarefa> todos = _repositorioTarefa.SelecionarTodos();
+
+            foreach (Tarefa tarefaJaRegistrada in todos)
+            {
+                if (tarefaJaRegistrada.Titulo == temp.Titulo)
+                {
+                    MessageBox.Show("O nome da tarefa já existe", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void CarregarTarefasNaTela()
@@ -84,9 +101,16 @@ namespace eAgenda.WinApp.ModuloTarefa
 
         private void buttonExcluir_Click(object sender, EventArgs e)
         {
-            //Tarefa tarefaSelecionada = (Tarefa)listBoxTarefasConcluidas.SelectedItem;    Alterar para apenas concluídas
-            Tarefa tarefaSelecionada2 = (Tarefa)listBoxTarefasPendentes.SelectedItem;
-            bool temAlgo = VerificarContinuidade(tarefaSelecionada2, "Excluir");
+            Tarefa temp = (Tarefa)listBoxTarefasPendentes.SelectedItem;
+            if(temp != null)
+            {
+                MessageBox.Show("Você só pode excluir tarefas já concluídas!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Tarefa tarefaSelecionada = (Tarefa)listBoxTarefasConcluidas.SelectedItem;
+            
+            bool temAlgo = VerificarContinuidade(tarefaSelecionada, "Excluir");
             if (!temAlgo)
                 return;
 
@@ -95,7 +119,9 @@ namespace eAgenda.WinApp.ModuloTarefa
 
             if (resultado == DialogResult.OK)
             {
-                _repositorioTarefa.Excluir(tarefaSelecionada2);
+                _repositorioTarefa.Excluir(tarefaSelecionada);
+                MessageBox.Show("Tarefa excluída com sucesso",
+                "Excluir", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CarregarTarefasNaTela();
             }
         }
@@ -123,7 +149,7 @@ namespace eAgenda.WinApp.ModuloTarefa
             TelaConcluirItens telaConcItens = new(tarefaSelecionada);
             DialogResult res = telaConcItens.ShowDialog();
 
-            if(res == DialogResult.OK)
+            if (res == DialogResult.OK)
             {
                 List<Item> itensConcluidos = telaConcItens.ItensConcluidos;
 
@@ -157,6 +183,12 @@ namespace eAgenda.WinApp.ModuloTarefa
 
             if (res == DialogResult.OK)
             {
+                Tarefa temp = telaCadTarefa.Tarefa;
+
+                bool podeSeguir = VerificarDuplicidade(temp);
+                if (!podeSeguir)
+                    return;
+
                 string status = _repositorioTarefa.Editar(novaTarefa, tarefaSelecionada);
                 if (status == "REGISTRO_VALIDO")
                 {
