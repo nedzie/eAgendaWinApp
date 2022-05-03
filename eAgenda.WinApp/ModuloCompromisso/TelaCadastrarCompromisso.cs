@@ -47,7 +47,10 @@ namespace eAgenda.WinApp.ModuloCompromisso
         {
             _compromisso!.Assunto = textBoxAssunto.Text;
             _compromisso.Local = textBoxLocal.Text;
-            _compromisso.DataCompromisso = DateTime.Parse(maskedTextBoxData.Text);
+            if (maskedTextBoxData.Text != "  /  /")
+                _compromisso.DataCompromisso = DateTime.Parse(maskedTextBoxData.Text);
+            else
+                _compromisso.DataCompromisso = null;
             _compromisso.HoraInicio = TimeSpan.Parse(maskedTextBoxHoraInicio.Text);
             _compromisso.HoraFim = TimeSpan.Parse(maskedTextBoxHoraFim.Text);
             if(listBoxContatos.SelectedItem == null)

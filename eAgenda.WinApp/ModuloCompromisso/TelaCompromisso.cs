@@ -25,11 +25,15 @@ namespace eAgenda.WinApp.ModuloCompromisso
             DialogResult res = telaCadCompromisso.ShowDialog();
             if (res == DialogResult.OK)
             {
+                Compromisso temp = telaCadCompromisso.Compromisso;
+                bool podeSeguir = ValidarHorarios(temp);
                 string status = _repositorioCompromisso.Inserir(telaCadCompromisso.Compromisso);
 
                 if (status == "REGISTRO_VALIDO")
                 {
-                    telaCadCompromisso.Compromisso.Contato.EstaEmCompromisso = true;
+                    if(telaCadCompromisso.Compromisso.Contato != null)
+                        telaCadCompromisso.Compromisso.Contato.EstaEmCompromisso = true;
+
                     MessageBox.Show("Compromisso inserido com sucesso!", "Contato", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
@@ -106,6 +110,27 @@ namespace eAgenda.WinApp.ModuloCompromisso
             }
             else
                 return true;
+        }
+
+        public bool ValidarHorarios(Compromisso temp)
+        {
+            List<Compromisso> todos = _repositorioCompromisso.SelecionarTodos();
+
+            foreach (Compromisso c in todos)
+            {
+                if (c.DataCompromisso == temp.DataCompromisso)
+                {
+                    if (temp.HoraInicio >= c.HoraInicio ||
+                        temp.HoraInicio <= c.HoraFim ||
+                        temp.HoraFim <= c.HoraFim ||
+                        temp.HoraFim >= c.HoraInicio)
+                    {
+                        MessageBox.Show("O horário deste compromisso conflita com a de outro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
 
         public void CarregarCompromissosPassados()
