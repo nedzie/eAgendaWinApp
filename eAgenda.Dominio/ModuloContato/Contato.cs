@@ -29,19 +29,16 @@ namespace eAgenda.Dominio
         #endregion
 
         #region Overrides
-
-        //public override bool Equals(object obj)
-        //{
-        //    Contato contato = obj as Contato;
-
-        //    var eIgual = (id == contato.id);
-            
-        //    return eIgual;
-        //}
-
         public override string ToString()
-        {            
-            return $"ID: {id} Nome: {Nome} Email: {Email} Telefone: {Telefone} Empresa: {Empresa} Cargo: {Cargo}";
+        {
+            if (!string.IsNullOrEmpty(Empresa))
+                return $"ID: {id} Nome: {Nome} Email: {Email} Telefone: {Telefone} Empresa: {Empresa}";
+
+            if(!string.IsNullOrEmpty(Cargo))
+                return $"ID: {id} Nome: {Nome} Email: {Email} Telefone: {Telefone} Cargo: {Cargo}";
+
+            else
+                return $"ID: {id} Nome: {Nome} Email: {Email} Telefone: {Telefone} Empresa: {Empresa} Cargo: {Cargo}";
         }
 
         public override string Validar()

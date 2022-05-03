@@ -49,7 +49,7 @@ namespace eAgenda.WinApp.ModuloTarefa
 
             foreach (Tarefa tarefaJaRegistrada in todos)
             {
-                if (tarefaJaRegistrada.Titulo == temp.Titulo)
+                if (tarefaJaRegistrada.Titulo == temp.Titulo && tarefaJaRegistrada.id != temp.id)
                 {
                     MessageBox.Show("O nome da tarefa já existe", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;

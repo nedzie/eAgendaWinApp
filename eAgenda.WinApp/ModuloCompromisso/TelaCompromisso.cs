@@ -50,6 +50,11 @@ namespace eAgenda.WinApp.ModuloCompromisso
         {
             Compromisso compromissoSelecionado = (Compromisso)listBoxCompromissosFuturos.SelectedItem;
 
+            if(compromissoSelecionado == null)
+            {
+                MessageBox.Show("É necessário selecionar um compromisso para editar!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             Compromisso novoCompromisso = new();
 
             novoCompromisso.id = compromissoSelecionado.id;
@@ -86,6 +91,12 @@ namespace eAgenda.WinApp.ModuloCompromisso
         {
             Compromisso compromissoSelecionado = (Compromisso)listBoxCompromissosFuturos.SelectedItem;
 
+            if (compromissoSelecionado == null)
+            {
+                MessageBox.Show("É necessário selecionar um compromisso para excluir!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             bool temAlgo = VerificarContinuidade(compromissoSelecionado, "Excluir");
             if (!temAlgo)
                 return;
@@ -98,75 +109,6 @@ namespace eAgenda.WinApp.ModuloCompromisso
                 _repositorioCompromisso.Excluir(compromissoSelecionado);
                 CarregarCompromissosNaTela();
             }
-        }
-
-
-        public bool VerificarContinuidade(Compromisso compromissoSelecionado, string tipo)
-        {
-            bool temAlgo = _repositorioCompromisso.ExisteRegistro();
-            if (!temAlgo)
-            {
-                MessageBox.Show($"Nenhum compromisso para {tipo}", tipo, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            if (compromissoSelecionado == null)
-            {
-                MessageBox.Show($"Selecione um compromisso para {tipo}", tipo, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            else
-                return true;
-        }
-
-        public bool ValidarHorarios(Compromisso novoCompromisso)
-        {
-            List<Compromisso> todos = _repositorioCompromisso.SelecionarTodos();
-
-            foreach (Compromisso compromissoJaRegistrado in todos)
-            {
-                if (compromissoJaRegistrado.DataCompromisso == novoCompromisso.DataCompromisso)
-                {
-                    if (novoCompromisso.HoraInicio >= compromissoJaRegistrado.HoraInicio &&
-                        novoCompromisso.HoraInicio <= compromissoJaRegistrado.HoraFim ||
-                        novoCompromisso.HoraFim <= compromissoJaRegistrado.HoraFim &&
-                        novoCompromisso.HoraFim >= compromissoJaRegistrado.HoraInicio)
-                    {
-                        MessageBox.Show("O horário deste compromisso conflita com a de outro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
-        public void CarregarCompromissosNaTela()
-        {
-            CarregarCompromissosFuturos();
-            CarregarCompromissosPassados();
-        }
-        public void CarregarCompromissosPassados()
-        {
-            List<Compromisso> compromissosPassados = _repositorioCompromisso.Filtrar(x => x.DataCompromisso <= DateTime.Now);
-            listBoxCompromissosPassados.Items.Clear();
-            foreach (Compromisso c in compromissosPassados)
-            {
-                listBoxCompromissosPassados.Items.Add(c);
-            }
-        }
-
-        public void CarregarCompromissosFuturos()
-        {
-            List<Compromisso> compromissosFuturos = _repositorioCompromisso.Filtrar(x => x.DataCompromisso > DateTime.Now);
-            listBoxCompromissosFuturos.Items.Clear();
-            foreach (Compromisso c in compromissosFuturos)
-            {
-                listBoxCompromissosFuturos.Items.Add(c);
-            }
-        }
-
-        private void buttonSair_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void buttonFiltrar_Click(object sender, EventArgs e)
@@ -206,6 +148,74 @@ namespace eAgenda.WinApp.ModuloCompromisso
         private void buttonVisualizarNormal_Click(object sender, EventArgs e)
         {
             CarregarCompromissosNaTela();
+        }
+        private void buttonSair_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private bool VerificarContinuidade(Compromisso compromissoSelecionado, string tipo)
+        {
+            bool temAlgo = _repositorioCompromisso.ExisteRegistro();
+            if (!temAlgo)
+            {
+                MessageBox.Show($"Nenhum compromisso para {tipo}", tipo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (compromissoSelecionado == null)
+            {
+                MessageBox.Show($"Selecione um compromisso para {tipo}", tipo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else
+                return true;
+        }
+
+        private bool ValidarHorarios(Compromisso novoCompromisso)
+        {
+            List<Compromisso> todos = _repositorioCompromisso.SelecionarTodos();
+
+            foreach (Compromisso compromissoJaRegistrado in todos)
+            {
+                if (compromissoJaRegistrado.DataCompromisso == novoCompromisso.DataCompromisso)
+                {
+                    if (novoCompromisso.HoraInicio >= compromissoJaRegistrado.HoraInicio &&
+                        novoCompromisso.HoraInicio <= compromissoJaRegistrado.HoraFim ||
+                        novoCompromisso.HoraFim <= compromissoJaRegistrado.HoraFim &&
+                        novoCompromisso.HoraFim >= compromissoJaRegistrado.HoraInicio &&
+                        novoCompromisso.id != compromissoJaRegistrado.id)
+                    {
+                        MessageBox.Show("O horário deste compromisso conflita com a de outro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        private void CarregarCompromissosNaTela()
+        {
+            CarregarCompromissosFuturos();
+            CarregarCompromissosPassados();
+        }
+        private void CarregarCompromissosPassados()
+        {
+            List<Compromisso> compromissosPassados = _repositorioCompromisso.Filtrar(x => x.DataCompromisso <= DateTime.Now);
+            listBoxCompromissosPassados.Items.Clear();
+            foreach (Compromisso c in compromissosPassados)
+            {
+                listBoxCompromissosPassados.Items.Add(c);
+            }
+        }
+
+        private void CarregarCompromissosFuturos()
+        {
+            List<Compromisso> compromissosFuturos = _repositorioCompromisso.Filtrar(x => x.DataCompromisso > DateTime.Now);
+            listBoxCompromissosFuturos.Items.Clear();
+            foreach (Compromisso c in compromissosFuturos)
+            {
+                listBoxCompromissosFuturos.Items.Add(c);
+            }
         }
     }
 }

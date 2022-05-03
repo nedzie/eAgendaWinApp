@@ -72,13 +72,10 @@ namespace eAgenda.WinApp.ModuloContato
 
             if (res == DialogResult.OK)
             {
-                if(telaCadContato.Contato.id == contatoSelecionado.id == false)
+                bool podeSeguir = VerificarDuplicidade(telaCadContato.Contato);
+                if (!podeSeguir)
                 {
-                    bool podeSeguir = VerificarDuplicidade(telaCadContato.Contato);
-                    if (!podeSeguir)
-                    {
-                        return;
-                    }
+                    return;
                 }
 
                 string status = _repositorioContato.Editar(novoContato, contatoSelecionado);
@@ -137,13 +134,13 @@ namespace eAgenda.WinApp.ModuloContato
             {
                 StringBuilder sb = new();
 
-                if (contatoJaRegistrado.Nome == contato.Nome)
+                if (contatoJaRegistrado.Nome == contato.Nome && contatoJaRegistrado.id != contato.id)
                     sb.AppendLine("O nome do contato já existe");
 
-                if (contatoJaRegistrado.Email == contato.Email)
+                if (contatoJaRegistrado.Email == contato.Email && contatoJaRegistrado.id != contato.id)
                     sb.AppendLine("O email do contato já existe");
 
-                if (contatoJaRegistrado.Telefone == contato.Telefone)
+                if (contatoJaRegistrado.Telefone == contato.Telefone && contatoJaRegistrado.id != contato.id)
                     sb.AppendLine("O telefone já existe");
 
                 if (sb.Length > 0)
