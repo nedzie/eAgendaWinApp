@@ -78,5 +78,41 @@ namespace eAgenda.WinApp.ModuloTarefa
                 CarregarTarefasNaTela();
             }
         }
+
+        private void buttonExcluir_Click(object sender, EventArgs e)
+        {
+            //Tarefa tarefaSelecionada = (Tarefa)listBoxTarefasConcluidas.SelectedItem;    Alterar para apenas concluídas
+            Tarefa tarefaSelecionada2 = (Tarefa)listBoxTarefasPendentes.SelectedItem;
+            bool temAlgo = VerificarContinuidade(tarefaSelecionada2, "Excluir");
+            if (!temAlgo)
+                return;
+
+            DialogResult resultado = MessageBox.Show("Excluir tarefa?",
+                "Excluir", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.OK)
+            {
+                _repositorioTarefa.Excluir(tarefaSelecionada2);
+                CarregarTarefasNaTela();
+            }
+        }
+
+
+        public bool VerificarContinuidade(Tarefa tarefaSelecionada, string tipo)
+        {
+            bool temAlgo = _repositorioTarefa.ExisteRegistro();
+            if (!temAlgo)
+            {
+                MessageBox.Show($"Nenhuma tarefa para {tipo}", tipo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (tarefaSelecionada == null)
+            {
+                MessageBox.Show($"Selecione uma tarefa para {tipo}", tipo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else
+                return true;
+        }
     }
 }

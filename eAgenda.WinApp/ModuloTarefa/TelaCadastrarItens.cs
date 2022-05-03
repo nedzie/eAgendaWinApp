@@ -31,23 +31,30 @@ namespace eAgenda.WinApp.ModuloTarefa
         }
         private void buttonAdicionar_Click(object sender, EventArgs e)
         {
-            List<string> titulos = listBoxItensTarefa.Items.Cast<Item>().ToList().Select(x => x.Titulo).ToList();
-
-            if (titulos.Count == 0 || titulos.Contains(textBoxTitulo.Text) == false)
+            if (!string.IsNullOrEmpty(textBoxTitulo.Text))
             {
-                Item itemTarefa = new();
+                List<string> titulos = listBoxItensTarefa.Items.Cast<Item>().ToList().Select(x => x.Titulo).ToList();
+                if (titulos.Count == 0 || titulos.Contains(textBoxTitulo.Text) == false)
+                {
+                    Item itemTarefa = new();
 
-                itemTarefa.Titulo = textBoxTitulo.Text;
+                    itemTarefa.Titulo = textBoxTitulo.Text;
 
-                listBoxItensTarefa.Items.Add(itemTarefa);
-                
-                ItensAdicionados.Add(itemTarefa);
+                    listBoxItensTarefa.Items.Add(itemTarefa);
+
+                    ItensAdicionados.Add(itemTarefa);
+                }
+                else
+                {
+                    MessageBox.Show("Não pode inserir itens com o mesmo nome", "Itens",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
-            {
-                MessageBox.Show("Não pode Inserir Itens com o mesmo Nome", "Itens",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                MessageBox.Show("Não pode inserir itens sem um título", "Itens", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            textBoxTitulo.Clear();
+            textBoxTitulo.Focus();
         }
     }
 }

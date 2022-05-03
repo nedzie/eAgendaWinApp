@@ -22,7 +22,6 @@ namespace eAgenda.Dominio
         #endregion
 
         #region Construtor
-
         public Contato()
         {
 
@@ -32,7 +31,12 @@ namespace eAgenda.Dominio
         #region Overrides
         public override string ToString()
         {
-            return ($"ID: {id}".PadRight(20, ' ') + $" Nome: {Nome}".PadRight(20 + Nome.Length) + $"Email: {Email} Telefone: {Telefone} Empresa: {Empresa} Cargo: {Cargo}");
+            return ($"ID: {id}".PadRight(3) + 
+                $" Nome: {Nome}".PadRight(20 + Nome.Length) + 
+                $"Email: {Email}".PadRight(40 + Email.Length) +
+                $"Telefone: {Telefone}".PadRight(15 + Telefone.Length) +
+                $"Empresa: {Empresa}".PadRight(20 + Empresa.Length) + 
+                $"Cargo: {Cargo}").PadRight(25 + Cargo.Length);
         }
 
         public override string Validar()
