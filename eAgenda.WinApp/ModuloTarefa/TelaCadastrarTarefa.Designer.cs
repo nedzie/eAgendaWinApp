@@ -34,7 +34,6 @@
             this.labelPrioridade = new System.Windows.Forms.Label();
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.buttonInserir = new System.Windows.Forms.Button();
-            this.listBoxTarefas = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // labelTituloTarefa
@@ -101,22 +100,12 @@
             this.buttonInserir.UseVisualStyleBackColor = false;
             this.buttonInserir.Click += new System.EventHandler(this.buttonInserir_Click);
             // 
-            // listBoxTarefas
-            // 
-            this.listBoxTarefas.FormattingEnabled = true;
-            this.listBoxTarefas.ItemHeight = 15;
-            this.listBoxTarefas.Location = new System.Drawing.Point(264, 27);
-            this.listBoxTarefas.Name = "listBoxTarefas";
-            this.listBoxTarefas.Size = new System.Drawing.Size(524, 214);
-            this.listBoxTarefas.TabIndex = 25;
-            // 
             // TelaCadastrarTarefa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(800, 261);
-            this.Controls.Add(this.listBoxTarefas);
+            this.ClientSize = new System.Drawing.Size(277, 165);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonInserir);
             this.Controls.Add(this.labelPrioridade);
@@ -142,6 +131,5 @@
         private System.Windows.Forms.Label labelPrioridade;
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Button buttonInserir;
-        private System.Windows.Forms.ListBox listBoxTarefas;
     }
 }

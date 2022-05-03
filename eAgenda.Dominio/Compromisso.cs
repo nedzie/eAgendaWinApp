@@ -15,6 +15,11 @@ namespace eAgenda.Dominio
         public TimeSpan HoraFim { get; set; }
         public Contato Contato { get { return _contato; } set { _contato = value; } }
 
+        public Compromisso()
+        {
+
+        }
+
         public override string ToString()
         {
             if (Contato != null)

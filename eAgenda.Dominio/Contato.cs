@@ -19,6 +19,7 @@ namespace eAgenda.Dominio
         public string Telefone { get { return telefone; } set { telefone = value; } }
         public string Empresa { get; set; }
         public string Cargo { get; set; }
+        public bool EstaEmCompromisso { get; set; }
         #endregion
 
         #region Construtor
@@ -57,7 +58,6 @@ namespace eAgenda.Dominio
             string padrao = @"^\([1-9]{2}\) (?:[2-8]|9 [1-9])[0-9]{3}\-[0-9]{4}$";
             if (!Regex.Match(Telefone, padrao).Success)
                 sb.AppendLine("O telefone do contato está fora dos padrões");
-
 
             if (sb.Length == 0)
                 sb.Append("REGISTRO_VALIDO");

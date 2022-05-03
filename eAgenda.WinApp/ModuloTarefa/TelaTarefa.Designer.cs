@@ -103,7 +103,7 @@
             this.tabControl1.Location = new System.Drawing.Point(138, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(650, 300);
+            this.tabControl1.Size = new System.Drawing.Size(903, 300);
             this.tabControl1.TabIndex = 14;
             // 
             // tabPageTarefasPendentes
@@ -112,7 +112,7 @@
             this.tabPageTarefasPendentes.Location = new System.Drawing.Point(4, 24);
             this.tabPageTarefasPendentes.Name = "tabPageTarefasPendentes";
             this.tabPageTarefasPendentes.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageTarefasPendentes.Size = new System.Drawing.Size(642, 272);
+            this.tabPageTarefasPendentes.Size = new System.Drawing.Size(895, 272);
             this.tabPageTarefasPendentes.TabIndex = 0;
             this.tabPageTarefasPendentes.Text = "Tarefas Pendentes";
             this.tabPageTarefasPendentes.UseVisualStyleBackColor = true;
@@ -123,7 +123,7 @@
             this.listBoxTarefasPendentes.ItemHeight = 15;
             this.listBoxTarefasPendentes.Location = new System.Drawing.Point(6, 6);
             this.listBoxTarefasPendentes.Name = "listBoxTarefasPendentes";
-            this.listBoxTarefasPendentes.Size = new System.Drawing.Size(630, 259);
+            this.listBoxTarefasPendentes.Size = new System.Drawing.Size(883, 259);
             this.listBoxTarefasPendentes.TabIndex = 0;
             // 
             // tabPageTarefasConcluidas
@@ -132,7 +132,7 @@
             this.tabPageTarefasConcluidas.Location = new System.Drawing.Point(4, 24);
             this.tabPageTarefasConcluidas.Name = "tabPageTarefasConcluidas";
             this.tabPageTarefasConcluidas.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageTarefasConcluidas.Size = new System.Drawing.Size(642, 272);
+            this.tabPageTarefasConcluidas.Size = new System.Drawing.Size(895, 272);
             this.tabPageTarefasConcluidas.TabIndex = 1;
             this.tabPageTarefasConcluidas.Text = "Tarefas Concluídas";
             this.tabPageTarefasConcluidas.UseVisualStyleBackColor = true;
@@ -143,7 +143,7 @@
             this.listBoxTarefasConcluidas.ItemHeight = 15;
             this.listBoxTarefasConcluidas.Location = new System.Drawing.Point(6, 6);
             this.listBoxTarefasConcluidas.Name = "listBoxTarefasConcluidas";
-            this.listBoxTarefasConcluidas.Size = new System.Drawing.Size(630, 259);
+            this.listBoxTarefasConcluidas.Size = new System.Drawing.Size(883, 259);
             this.listBoxTarefasConcluidas.TabIndex = 0;
             // 
             // buttonAdicionarItens
@@ -177,7 +177,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(800, 329);
+            this.ClientSize = new System.Drawing.Size(1053, 329);
             this.Controls.Add(this.buttonConcluirItens);
             this.Controls.Add(this.buttonAdicionarItens);
             this.Controls.Add(this.tabControl1);

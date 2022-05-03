@@ -1,12 +1,6 @@
 ﻿using eAgenda.Dominio;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloCompromisso
@@ -33,8 +27,11 @@ namespace eAgenda.WinApp.ModuloCompromisso
             {
                 string status = _repositorioCompromisso.Inserir(telaCadCompromisso.Compromisso);
 
-                if(status == "REGISTRO_VALIDO")
+                if (status == "REGISTRO_VALIDO")
+                {
+                    telaCadCompromisso.Compromisso.Contato.EstaEmCompromisso = true;
                     MessageBox.Show("Compromisso inserido com sucesso!", "Contato", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
                 else
                     MessageBox.Show($"{status}\nTente novamente", "Compromisso", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -61,10 +58,10 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
             DialogResult res = telaCadCompromisso.ShowDialog();
 
-            if(res == DialogResult.OK)
+            if (res == DialogResult.OK)
             {
                 string status = _repositorioCompromisso.Editar(telaCadCompromisso.Compromisso, compromissoSelecionado);
-                if(status == "REGISTRO_VALIDO")
+                if (status == "REGISTRO_VALIDO")
                     MessageBox.Show("Compromisso editado com sucesso!", "Contato", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 else
                     MessageBox.Show($"{status}\nTente novamente", "Compromisso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -85,7 +82,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
             DialogResult resultado = MessageBox.Show("Excluir compromisso?",
                 "Excluir", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-            if(resultado == DialogResult.OK)
+            if (resultado == DialogResult.OK)
             {
                 _repositorioCompromisso.Excluir(compromissoSelecionado);
                 CarregarCompromissosPassados();

@@ -30,8 +30,10 @@ namespace eAgenda.WinApp.ModuloCompromisso
                 maskedTextBoxData.Text = _compromisso.DataCompromisso.ToString();
                 maskedTextBoxHoraInicio.Text = _compromisso.HoraInicio.ToString();
                 maskedTextBoxHoraFim.Text = _compromisso.HoraFim.ToString();
-                if(_compromisso.Contato != null)
+                if (_compromisso.Contato.id != 0)
                     labelContato.Text = _compromisso.Contato.ToString();
+                else
+                    labelContato.Text = "Nenhum";
             }
         }
 
@@ -53,7 +55,6 @@ namespace eAgenda.WinApp.ModuloCompromisso
                 listBoxContatos.SelectedItem = _compromisso.Contato;
             }
             _compromisso.Contato = (Contato)listBoxContatos.SelectedItem;
-
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)

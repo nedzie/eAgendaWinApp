@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloContato
@@ -24,6 +25,12 @@ namespace eAgenda.WinApp.ModuloContato
 
             if (res == DialogResult.OK)
             {
+                bool podeSeguir = ValidarInformacoes(telaCadContato);
+                if(!podeSeguir)
+                {
+                    return;
+                }
+
                 string status = _repositorioContato.Inserir(telaCadContato.Contato);
 
                 if (status == "REGISTRO_VALIDO")
@@ -34,6 +41,7 @@ namespace eAgenda.WinApp.ModuloContato
                 CarregarContatosNaTela();
             }
         }
+
 
         private void buttonEditar_Click(object sender, EventArgs e)
         {
@@ -47,6 +55,7 @@ namespace eAgenda.WinApp.ModuloContato
             novoContato.Telefone = contatoSelecionado.Telefone;
             novoContato.Empresa = contatoSelecionado.Empresa;
             novoContato.Cargo = contatoSelecionado.Cargo;
+            novoContato.EstaEmCompromisso = contatoSelecionado.EstaEmCompromisso;
 
             bool temAlgo = VerificarContinuidade(contatoSelecionado, "Editar");
             if (!temAlgo)
@@ -58,6 +67,12 @@ namespace eAgenda.WinApp.ModuloContato
 
             if (res == DialogResult.OK)
             {
+                bool podeSeguir = ValidarInformacoes(telaCadContato);
+                if (!podeSeguir)
+                {
+                    return;
+                }
+
                 string status = _repositorioContato.Editar(novoContato, contatoSelecionado);
                 if (status == "REGISTRO_VALIDO")
                 {
@@ -76,6 +91,12 @@ namespace eAgenda.WinApp.ModuloContato
         {
             Contato contatoSelecionado = (Contato)listBoxContato.SelectedItem;
 
+            if (contatoSelecionado.EstaEmCompromisso)
+            {
+                MessageBox.Show("O contato está presente em um compromisso, não é possível excluir", "Excluir", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             bool temAlgo = VerificarContinuidade(contatoSelecionado, "Excluir");
             if (!temAlgo)
                 return;
@@ -89,21 +110,32 @@ namespace eAgenda.WinApp.ModuloContato
                 CarregarContatosNaTela();
             }
         }
-        private void buttonVisualizarNormal_Click(object sender, EventArgs e)
+        private bool ValidarInformacoes(TelaCadastrarContato telaCadContato)
         {
-            CarregarContatosNaTela();
-        }
-        private void buttonVisualizarCargo_Click(object sender, EventArgs e)
-        {
-            CarregarContatosPorGrupo();
-        }
+            List<Contato> todos = _repositorioContato.SelecionarTodos();
 
-        private void buttonSair_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+            foreach (Contato contatoJaRegistrado in todos)
+            {
+                StringBuilder sb = new();
 
-        public bool VerificarContinuidade(Contato contatoSelecionado, string tipo)
+                if (contatoJaRegistrado.Nome == telaCadContato.Contato.Nome)
+                    sb.AppendLine("O nome do contato já existe");
+
+                if (contatoJaRegistrado.Email == telaCadContato.Contato.Email)
+                    sb.AppendLine("O email do contato já existe");
+
+                if (contatoJaRegistrado.Telefone == telaCadContato.Contato.Telefone)
+                    sb.AppendLine("O telefone já existe");
+
+                if (sb.Length > 0)
+                {
+                    MessageBox.Show($"{sb}\nTente novamente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            return true;
+        }
+        private bool VerificarContinuidade(Contato contatoSelecionado, string tipo)
         {
             bool temAlgo = _repositorioContato.ExisteRegistro();
             if (!temAlgo)
@@ -119,6 +151,21 @@ namespace eAgenda.WinApp.ModuloContato
             else
                 return true;
         }
+
+        private void buttonVisualizarNormal_Click(object sender, EventArgs e)
+        {
+            CarregarContatosNaTela();
+        }
+        private void buttonVisualizarCargo_Click(object sender, EventArgs e)
+        {
+            CarregarContatosPorGrupo();
+        }
+
+        private void buttonSair_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void CarregarContatosNaTela()
         {
             List<Contato> contatos = _repositorioContato.SelecionarTodos();
@@ -142,6 +189,5 @@ namespace eAgenda.WinApp.ModuloContato
                 listBoxContato.Items.Add(c);
             }
         }
-
     }
 }

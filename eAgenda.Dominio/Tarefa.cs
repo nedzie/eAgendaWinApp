@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace eAgenda.Dominio
 {
-    public class Tarefa : EntidadeBase
+    public class Tarefa : EntidadeBase, IEnumerable<Tarefa>
     {
         private PrioridadeEnum _prioridade;
         public string Titulo { get; set; }
@@ -23,7 +23,7 @@ namespace eAgenda.Dominio
             get { return itens; }
             set { itens = value; }
         }
- 
+
         public PrioridadeEnum Prioridade
         {
             get { return _prioridade; }
@@ -62,7 +62,7 @@ namespace eAgenda.Dominio
         {
             decimal percentual = CalcularPercentualConclusao();
 
-            if(DataConclusao.HasValue)
+            if (DataConclusao.HasValue)
                 return $"ID: {id} Título: {Titulo} Prioridade: {Prioridade} Data de criação: {DataCriacao} Percentual: {percentual}% Conclusão: {DataConclusao}";
 
             return $"ID: {id} Título: {Titulo} Prioridade: {Prioridade} Data de criação: {DataCriacao} Percentual: {percentual}%";
@@ -102,7 +102,10 @@ namespace eAgenda.Dominio
             var percentual = CalcularPercentualConclusao();
 
             if (percentual == 100)
+            {
                 DataConclusao = DateTime.Now;
+                Concluida = true;
+            }
         }
 
         public void MarcarPendente(Item item)
@@ -110,6 +113,16 @@ namespace eAgenda.Dominio
             Item itemTarefa = itens.Find(x => x.Equals(item));
 
             itemTarefa?.MarcarPendente();
+        }
+
+        public IEnumerator<Tarefa> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }
 }

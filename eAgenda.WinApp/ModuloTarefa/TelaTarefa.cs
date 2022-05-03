@@ -18,6 +18,7 @@ namespace eAgenda.WinApp.ModuloTarefa
         {
             InitializeComponent();
             _repositorioTarefa = repositorioTarefa;
+            CarregarTarefasNaTela();
         }
 
         private void buttonInserir_Click(object sender, EventArgs e)
@@ -45,7 +46,8 @@ namespace eAgenda.WinApp.ModuloTarefa
 
         private void CarregasTarefasPendentes()
         {
-            List<Tarefa> tarefasPendentes = _repositorioTarefa.Filtrar(x => x.Concluida == false);
+            List<Tarefa> tarefasPendentes = _repositorioTarefa.Filtrar(x => x.Concluida == false).OrderBy(x => x.Prioridade).ToList();
+
             listBoxTarefasPendentes.Items.Clear();
             foreach (var item in tarefasPendentes)
             {
@@ -54,7 +56,8 @@ namespace eAgenda.WinApp.ModuloTarefa
         }
         private void CarregarTarefasConcluidas()
         {
-            List<Tarefa> tarefasConcluidas = _repositorioTarefa.Filtrar(x => x.Concluida == true);
+            List<Tarefa> tarefasConcluidas = _repositorioTarefa.Filtrar(x => x.Concluida == true).OrderBy(x => x.Prioridade).ToList();
+
             listBoxTarefasConcluidas.Items.Clear();
             foreach (var item in tarefasConcluidas)
             {
