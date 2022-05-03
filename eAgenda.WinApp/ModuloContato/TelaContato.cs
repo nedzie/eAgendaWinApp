@@ -25,8 +25,8 @@ namespace eAgenda.WinApp.ModuloContato
 
             if (res == DialogResult.OK)
             {
-                bool podeSeguir = ValidarInformacoes(telaCadContato);
-                if(!podeSeguir)
+                bool podeSeguir = VerificarDuplicidade(telaCadContato);
+                if (!podeSeguir)
                 {
                     return;
                 }
@@ -47,6 +47,16 @@ namespace eAgenda.WinApp.ModuloContato
         {
             Contato contatoSelecionado = (Contato)listBoxContato.SelectedItem;
 
+            if (contatoSelecionado == null)
+            {
+                MessageBox.Show("É preciso selecionar um contato para editar", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            bool temAlgo = VerificarContinuidade(contatoSelecionado, "Editar");
+            if (!temAlgo)
+                return;
+
             Contato novoContato = new();
 
             novoContato.id = contatoSelecionado.id;
@@ -57,9 +67,6 @@ namespace eAgenda.WinApp.ModuloContato
             novoContato.Cargo = contatoSelecionado.Cargo;
             novoContato.EstaEmCompromisso = contatoSelecionado.EstaEmCompromisso;
 
-            bool temAlgo = VerificarContinuidade(contatoSelecionado, "Editar");
-            if (!temAlgo)
-                return;
 
             TelaCadastrarContato telaCadContato = new(novoContato); // Povoa com as mesmas informações sem editar as antigas
 
@@ -67,7 +74,7 @@ namespace eAgenda.WinApp.ModuloContato
 
             if (res == DialogResult.OK)
             {
-                bool podeSeguir = ValidarInformacoes(telaCadContato);
+                bool podeSeguir = VerificarDuplicidade(telaCadContato);
                 if (!podeSeguir)
                 {
                     return;
@@ -110,8 +117,9 @@ namespace eAgenda.WinApp.ModuloContato
                 CarregarContatosNaTela();
             }
         }
-        private bool ValidarInformacoes(TelaCadastrarContato telaCadContato)
+        private bool VerificarDuplicidade(TelaCadastrarContato telaCadContato)
         {
+
             List<Contato> todos = _repositorioContato.SelecionarTodos();
 
             foreach (Contato contatoJaRegistrado in todos)
@@ -132,7 +140,11 @@ namespace eAgenda.WinApp.ModuloContato
                     MessageBox.Show($"{sb}\nTente novamente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
+
+
+
             }
+
             return true;
         }
         private bool VerificarContinuidade(Contato contatoSelecionado, string tipo)
